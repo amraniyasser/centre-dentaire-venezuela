@@ -1,13 +1,867 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Centre Dentaire Venezuela</title>
-</head>
+<!-- PH SIMULATOR — MINI DEMO (Link -> Loading -> Personalized Dashboard) -->
+<section class="phx-demo" id="demo">
+  <div class="phx-demoBg" aria-hidden="true"></div>
+  <div class="phx-demoNoise" aria-hidden="true"></div>
 
-<body>
-  <h1>Centre Dentaire Venezuela</h1>
-  <p>Bienvenue sur notre site.</p>
-</body>
-</html>
+  <div class="phx-demoWrap">
+    <div class="phx-demoHead">
+      <div class="phx-demoPill">
+        <span class="phx-dot"></span>
+        Try a quick simulation
+      </div>
+      <h2 class="phx-demoTitle">See your launch dashboard in seconds.</h2>
+      <p class="phx-demoSub">
+        Paste your landing page link. We generate a data-style dashboard with improvements, best day to launch, and launch prep.
+      </p>
+    </div>
+
+    <form class="phx-demoForm" id="phxDemoForm" autocomplete="off">
+      <div class="phx-demoField">
+        <span class="phx-icon" aria-hidden="true">↗</span>
+        <input
+          id="phxUrl"
+          class="phx-demoInput"
+          type="url"
+          placeholder="https://yourproduct.com"
+          required
+        />
+      </div>
+
+      <button class="phx-demoBtn" type="submit">
+        <span class="phx-btnGlow" aria-hidden="true"></span>
+        Generate my dashboard
+        <span class="phx-btnArr">→</span>
+      </button>
+    </form>
+
+    <!-- STAGE: LOADING -->
+    <div class="phx-stage is-loading" id="phxStage" aria-live="polite">
+      <div class="phx-loading">
+        <div class="phx-loaderTop">
+          <div class="phx-loaderTitle">
+            <span class="phx-loaderDot"></span>
+            Building your dashboard
+          </div>
+          <div class="phx-loaderChip" id="phxLoaderChip">Connecting…</div>
+        </div>
+
+        <div class="phx-scanline" aria-hidden="true"></div>
+
+        <div class="phx-progress">
+          <div class="phx-progressBar"><span id="phxProg"></span></div>
+          <div class="phx-progressTxt">
+            <span id="phxProgLabel">Analyzing landing page structure…</span>
+            <span class="phx-ph" id="phxProgPct">0%</span>
+          </div>
+        </div>
+
+        <div class="phx-steps" aria-hidden="true">
+          <div class="phx-step is-on" data-step="1">
+            <span class="phx-stepK">01</span>
+            <span class="phx-stepV">Extracting signals</span>
+          </div>
+          <div class="phx-step" data-step="2">
+            <span class="phx-stepK">02</span>
+            <span class="phx-stepV">Modeling launch patterns</span>
+          </div>
+          <div class="phx-step" data-step="3">
+            <span class="phx-stepK">03</span>
+            <span class="phx-stepV">Generating improvements</span>
+          </div>
+          <div class="phx-step" data-step="4">
+            <span class="phx-stepK">04</span>
+            <span class="phx-stepV">Scheduling best day</span>
+          </div>
+        </div>
+
+        <div class="phx-glitchWords" aria-hidden="true">
+          <span>DATA</span><span>CLARITY</span><span>MOMENTUM</span><span>PROOF</span><span>HOOK</span>
+        </div>
+      </div>
+
+      <!-- STAGE: DASHBOARD -->
+      <div class="phx-board" id="phxBoard" hidden>
+        <div class="phx-boardTop">
+          <div class="phx-boardTitle">
+            <span class="phx-boardDot"></span>
+            Launch Dashboard
+            <span class="phx-boardFor" id="phxBoardFor">—</span>
+          </div>
+
+          <div class="phx-boardBadges">
+            <span class="phx-badge">Data</span>
+            <span class="phx-badge">Improvements</span>
+            <span class="phx-badge">Best day</span>
+          </div>
+        </div>
+
+        <div class="phx-grid">
+          <!-- LEFT: KPIs + Charts -->
+          <div class="phx-col">
+            <div class="phx-card">
+              <div class="phx-cardTop">
+                <span class="phx-cardDot"></span>
+                Launch readiness
+              </div>
+              <div class="phx-kpiRow">
+                <div class="phx-kpiBig">
+                  <div class="phx-kpiNum"><span id="phxReadiness">78</span><span class="phx-kpiUnit">/100</span></div>
+                  <div class="phx-kpiHint">Based on page clarity + proof + narrative + CTA density</div>
+                </div>
+
+                <div class="phx-ringWrap" aria-hidden="true">
+                  <svg class="phx-ring" viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="36" stroke="rgba(255,255,255,.12)" stroke-width="10" fill="none"/>
+                    <circle id="phxRing" cx="50" cy="50" r="36" stroke="rgba(218,84,47,.95)" stroke-width="10" fill="none"
+                            stroke-linecap="round" stroke-dasharray="176 226" transform="rotate(-90 50 50)"/>
+                  </svg>
+                  <div class="phx-ringTxt">
+                    <div class="phx-ringMain" id="phxRingPct">78%</div>
+                    <div class="phx-ringSub">Ready</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="phx-miniBars" aria-hidden="true">
+                <div class="phx-bar">
+                  <div class="phx-barTop"><span>Hook</span><span id="phxHook">7.6</span></div>
+                  <div class="phx-barTrack"><span id="phxHookBar"></span></div>
+                </div>
+                <div class="phx-bar">
+                  <div class="phx-barTop"><span>Proof</span><span id="phxProof">6.9</span></div>
+                  <div class="phx-barTrack"><span id="phxProofBar"></span></div>
+                </div>
+                <div class="phx-bar">
+                  <div class="phx-barTop"><span>Clarity</span><span id="phxClarity">8.2</span></div>
+                  <div class="phx-barTrack"><span id="phxClarityBar"></span></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="phx-card">
+              <div class="phx-cardTop">
+                <span class="phx-cardDot"></span>
+                Best day to launch
+              </div>
+
+              <div class="phx-bestDay">
+                <div class="phx-bestMain">
+                  <div class="phx-bestLabel">Recommended</div>
+                  <div class="phx-bestValue" id="phxBestDay">Tuesday</div>
+                  <div class="phx-bestSub" id="phxBestSub">High maker activity · consistent comment velocity</div>
+                </div>
+
+                <div class="phx-spark" aria-hidden="true">
+                  <svg viewBox="0 0 260 64" class="phx-sparkSvg">
+                    <path d="M1 54 L1 10" stroke="rgba(255,255,255,.10)"/>
+                    <path d="M1 54 L258 54" stroke="rgba(255,255,255,.10)"/>
+                    <path d="M8 44 C 40 48, 60 32, 80 36 S 120 50, 140 30 S 180 14, 206 28 S 236 42, 252 18"
+                          fill="none" stroke="rgba(218,84,47,.95)" stroke-width="3" stroke-linecap="round"/>
+                    <circle cx="252" cy="18" r="4" fill="rgba(218,84,47,.95)"/>
+                  </svg>
+                  <div class="phx-sparkHint">Projected attention curve</div>
+                </div>
+              </div>
+
+              <div class="phx-week">
+                <div class="phx-pillDay is-hot"><span class="k">Tue</span><span class="v" id="phxTue">High</span></div>
+                <div class="phx-pillDay"><span class="k">Wed</span><span class="v" id="phxWed">Med</span></div>
+                <div class="phx-pillDay"><span class="k">Thu</span><span class="v" id="phxThu">Med</span></div>
+                <div class="phx-pillDay"><span class="k">Mon</span><span class="v" id="phxMon">Low</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT: Improvements + Checklist -->
+          <div class="phx-col">
+            <div class="phx-card">
+              <div class="phx-cardTop">
+                <span class="phx-cardDot"></span>
+                Improvements (pre-launch)
+              </div>
+
+              <div class="phx-improveList" id="phxImproveList">
+                <!-- injected -->
+              </div>
+
+              <div class="phx-note">
+                <span class="phx-noteDot"></span>
+                This is a preview dashboard for projection (no interaction).
+              </div>
+            </div>
+
+            <div class="phx-card">
+              <div class="phx-cardTop">
+                <span class="phx-cardDot"></span>
+                Launch kit checklist
+              </div>
+
+              <div class="phx-check">
+                <div class="phx-checkItem"><span class="c"></span><span>Hero + 1-line value prop</span></div>
+                <div class="phx-checkItem"><span class="c"></span><span>Demo (GIF/video) above the fold</span></div>
+                <div class="phx-checkItem"><span class="c"></span><span>Proof blocks (metrics, logos, testimonials)</span></div>
+                <div class="phx-checkItem"><span class="c"></span><span>Planned first comments (maker + team)</span></div>
+                <div class="phx-checkItem"><span class="c"></span><span>Launch day schedule + outreach list</span></div>
+              </div>
+
+              <div class="phx-miniFooter">
+                <span class="phx-miniTag">Next</span>
+                <span class="phx-miniTxt">Finalize assets → then launch on the recommended day.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="phx-retryRow">
+          <button class="phx-ghost" id="phxReset" type="button">
+            <span class="phx-ghostDot"></span>
+            Try another link
+          </button>
+          <div class="phx-smallHint">No ranking prediction shown in this demo.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    :root{ --ph:#da542f; }
+
+    .phx-demo{
+      position:relative;
+      padding: 72px 18px;
+      background:#000;
+      color:#fff;
+      overflow:hidden;
+      isolation:isolate;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
+    }
+    .phx-demoBg{
+      position:absolute; inset:0;
+      background:
+        radial-gradient(800px 380px at 18% 18%, rgba(218,84,47,.18), transparent 55%),
+        radial-gradient(900px 520px at 80% 70%, rgba(255,255,255,.07), transparent 60%),
+        repeating-linear-gradient(90deg, rgba(255,255,255,.04) 0 1px, transparent 1px 34px),
+        repeating-linear-gradient(0deg, rgba(255,255,255,.03) 0 1px, transparent 1px 34px);
+      opacity:.55;
+      pointer-events:none;
+      z-index:0;
+    }
+    .phx-demoNoise{
+      position:absolute; inset:0;
+      background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.20'/%3E%3C/svg%3E");
+      opacity:.09;
+      mix-blend-mode: overlay;
+      pointer-events:none;
+      z-index:1;
+    }
+
+    .phx-demoWrap{
+      position:relative;
+      z-index:2;
+      max-width: 980px;
+      margin: 0 auto;
+      display:grid;
+      gap: 18px;
+    }
+    .phx-demoPill{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(218,84,47,.28);
+      background: rgba(0,0,0,.28);
+      color: rgba(255,255,255,.78);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      font-size: 12px;
+      width: fit-content;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.08);
+    }
+    .phx-dot{
+      width:10px; height:10px; border-radius:50%;
+      background: var(--ph);
+      box-shadow: 0 0 18px rgba(218,84,47,.75);
+      animation: phxPulse 1.6s ease-in-out infinite;
+    }
+    @keyframes phxPulse{ 0%,100%{transform:scale(1);opacity:.75} 50%{transform:scale(1.28);opacity:1} }
+
+    .phx-demoTitle{
+      margin: 4px 0 0;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      font-size: clamp(26px, 3.6vw, 42px);
+      line-height: 1.05;
+      text-shadow: 0 0 46px rgba(255,255,255,.05);
+    }
+    .phx-demoSub{
+      margin: 0;
+      max-width: 720px;
+      color: rgba(255,255,255,.70);
+      line-height: 1.65;
+      font-size: 14px;
+    }
+
+    .phx-demoForm{
+      display:grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items:center;
+      margin-top: 6px;
+    }
+    @media (max-width: 720px){
+      .phx-demoForm{ grid-template-columns: 1fr; }
+    }
+
+    .phx-demoField{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      padding: 14px 14px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.35);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 18px 70px rgba(0,0,0,.35);
+    }
+    .phx-icon{
+      width: 28px; height: 28px;
+      display:grid; place-items:center;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      color: rgba(255,255,255,.75);
+      font-weight: 900;
+    }
+    .phx-demoInput{
+      width:100%;
+      border:0;
+      outline:0;
+      background:transparent;
+      color:#fff;
+      font-weight: 900;
+      font-size: 14px;
+      letter-spacing: .01em;
+    }
+    .phx-demoInput::placeholder{ color: rgba(255,255,255,.45); font-weight: 800; }
+
+    .phx-demoBtn{
+      position:relative;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap: 10px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      border: 1px solid rgba(218,84,47,.38);
+      background: rgba(218,84,47,.18);
+      color:#fff;
+      cursor:pointer;
+      font-weight: 900;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      font-size: 12px;
+      overflow:hidden;
+      box-shadow: 0 22px 90px rgba(0,0,0,.55);
+      transition: transform .16s ease, background .16s ease, box-shadow .16s ease;
+      user-select:none;
+    }
+    .phx-demoBtn:hover{
+      transform: translateY(-2px);
+      background: rgba(218,84,47,.26);
+      box-shadow: 0 26px 110px rgba(218,84,47,.12);
+    }
+    .phx-btnGlow{
+      position:absolute; inset:-60%;
+      background: radial-gradient(circle, rgba(255,255,255,.16), transparent 55%);
+      filter: blur(10px);
+      opacity:.7;
+      animation: phxGlow 3.8s ease-in-out infinite;
+      pointer-events:none;
+    }
+    @keyframes phxGlow{ 0%,100%{transform:translate(-6%,8%)} 50%{transform:translate(10%,-8%)} }
+
+    .phx-stage{
+      margin-top: 8px;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      overflow:hidden;
+      box-shadow: 0 30px 110px rgba(0,0,0,.55);
+      min-height: 360px;
+      position:relative;
+    }
+
+    /* Loading card */
+    .phx-loading{
+      padding: 18px;
+      position:relative;
+      overflow:hidden;
+    }
+    .phx-scanline{
+      position:absolute; left:-20%; right:-20%; top: -30%;
+      height: 220px;
+      background: linear-gradient(180deg, transparent, rgba(218,84,47,.12), transparent);
+      filter: blur(10px);
+      opacity:.65;
+      animation: phxSweep 2.6s ease-in-out infinite;
+      pointer-events:none;
+    }
+    @keyframes phxSweep{ 0%,100%{transform:translateY(0)} 50%{transform:translateY(220px)} }
+
+    .phx-loaderTop{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .phx-loaderTitle{
+      display:flex; align-items:center; gap: 10px;
+      font-weight: 900;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      font-size: 12px;
+      color: rgba(255,255,255,.86);
+    }
+    .phx-loaderDot{
+      width:10px; height:10px; border-radius:50%;
+      background: var(--ph);
+      box-shadow: 0 0 18px rgba(218,84,47,.75);
+    }
+    .phx-loaderChip{
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(218,84,47,.28);
+      background: rgba(218,84,47,.10);
+      color: rgba(255,255,255,.82);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      white-space:nowrap;
+    }
+
+    .phx-progress{
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.24);
+      padding: 12px;
+      margin-bottom: 12px;
+    }
+    .phx-progressBar{
+      height: 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.06);
+      overflow:hidden;
+      margin-bottom: 10px;
+    }
+    .phx-progressBar span{
+      display:block;
+      height:100%;
+      width: 0%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(218,84,47,.95), rgba(218,84,47,.18));
+      box-shadow: 0 0 22px rgba(218,84,47,.25);
+      position:relative;
+    }
+    .phx-progressBar span::after{
+      content:"";
+      position:absolute; inset:-12px -40%;
+      background: radial-gradient(circle, rgba(255,255,255,.14), transparent 55%);
+      filter: blur(10px);
+      opacity:.7;
+      animation: phxShimmer 1.2s linear infinite;
+    }
+    @keyframes phxShimmer{ 0%{transform:translateX(-20%)} 100%{transform:translateX(30%)} }
+
+    .phx-progressTxt{
+      display:flex; justify-content:space-between; align-items:center; gap:12px;
+      color: rgba(255,255,255,.70);
+      font-size: 12px;
+      font-weight: 800;
+    }
+    .phx-ph{ color: var(--ph); font-weight: 900; }
+
+    .phx-steps{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    @media (max-width: 720px){ .phx-steps{ grid-template-columns: 1fr; } }
+
+    .phx-step{
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      padding: 12px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap: 12px;
+      color: rgba(255,255,255,.72);
+    }
+    .phx-stepK{
+      font-weight: 900;
+      letter-spacing: .18em;
+      opacity:.65;
+    }
+    .phx-stepV{
+      font-weight: 900;
+      font-size: 12px;
+    }
+    .phx-step.is-on{
+      border-color: rgba(218,84,47,.22);
+      background: rgba(218,84,47,.06);
+      color: rgba(255,255,255,.92);
+      box-shadow: 0 20px 80px rgba(218,84,47,.08);
+    }
+
+    .phx-glitchWords{
+      display:flex; gap: 10px; flex-wrap:wrap;
+      opacity:.75;
+      user-select:none;
+    }
+    .phx-glitchWords span{
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.18);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.62);
+      position:relative;
+      overflow:hidden;
+    }
+    .phx-glitchWords span::after{
+      content:"";
+      position:absolute; inset:0;
+      background: linear-gradient(90deg, transparent, rgba(218,84,47,.18), transparent);
+      transform: translateX(-120%);
+      animation: phxWordSweep 1.6s linear infinite;
+      opacity:.8;
+    }
+    @keyframes phxWordSweep{ 0%{transform:translateX(-120%)} 100%{transform:translateX(120%)} }
+
+    /* Dashboard */
+    .phx-board{
+      padding: 16px;
+      animation: phxReveal .5s ease both;
+    }
+    @keyframes phxReveal{ from{opacity:0; transform:translateY(6px)} to{opacity:1; transform:translateY(0)} }
+
+    .phx-boardTop{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap: 12px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+    .phx-boardTitle{
+      display:flex; align-items:center; gap: 10px;
+      font-weight: 900;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      font-size: 12px;
+      color: rgba(255,255,255,.86);
+    }
+    .phx-boardDot{
+      width:10px; height:10px; border-radius:50%;
+      background: var(--ph);
+      box-shadow: 0 0 18px rgba(218,84,47,.75);
+    }
+    .phx-boardFor{ color: rgba(255,255,255,.60); font-weight: 900; letter-spacing:.08em; }
+
+    .phx-boardBadges{ display:flex; gap: 8px; flex-wrap:wrap; }
+    .phx-badge{
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.18);
+      color: rgba(255,255,255,.62);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .phx-grid{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 12px;
+    }
+    @media (max-width: 900px){ .phx-grid{ grid-template-columns: 1fr; } }
+
+    .phx-card{
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.22);
+      padding: 14px;
+      box-shadow: 0 18px 70px rgba(0,0,0,.35);
+    }
+    .phx-cardTop{
+      display:flex; align-items:center; gap: 10px;
+      color: rgba(255,255,255,.70);
+      font-size: 11px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      font-weight: 900;
+    }
+    .phx-cardDot{
+      width:10px; height:10px; border-radius:50%;
+      background: rgba(218,84,47,.75);
+      box-shadow: 0 0 14px rgba(218,84,47,.45);
+    }
+
+    .phx-kpiRow{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 12px;
+      align-items:center;
+      margin-bottom: 12px;
+    }
+    @media (max-width: 520px){ .phx-kpiRow{ grid-template-columns: 1fr; } }
+
+    .phx-kpiNum{
+      font-size: 34px;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      line-height:1;
+    }
+    .phx-kpiUnit{ font-size: 16px; color: rgba(255,255,255,.65); margin-left: 6px; }
+    .phx-kpiHint{ margin-top: 8px; color: rgba(255,255,255,.60); font-size: 12px; font-weight: 800; line-height:1.45; }
+
+    .phx-ringWrap{ position:relative; display:grid; place-items:center; }
+    .phx-ring{ width: 92px; height: 92px; }
+    .phx-ringTxt{ position:absolute; text-align:center; }
+    .phx-ringMain{ font-weight: 900; font-size: 16px; }
+    .phx-ringSub{ color: rgba(255,255,255,.55); font-size: 12px; font-weight: 800; }
+
+    .phx-miniBars{ display:grid; gap: 10px; }
+    .phx-barTop{ display:flex; justify-content:space-between; align-items:center; font-size: 12px; font-weight: 900; color: rgba(255,255,255,.72); }
+    .phx-barTrack{
+      height: 10px; margin-top: 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.06);
+      overflow:hidden;
+    }
+    .phx-barTrack span{
+      display:block; height:100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(218,84,47,.95), rgba(218,84,47,.18));
+      width: 0%;
+      transition: width .6s ease;
+    }
+
+    .phx-bestDay{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      align-items:center;
+    }
+    @media (max-width: 520px){ .phx-bestDay{ grid-template-columns: 1fr; } }
+
+    .phx-bestLabel{
+      color: rgba(255,255,255,.55);
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      font-size: 11px;
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+    .phx-bestValue{
+      font-weight: 900;
+      font-size: 26px;
+      letter-spacing: -0.02em;
+      color: var(--ph);
+      text-shadow: 0 0 20px rgba(218,84,47,.25);
+    }
+    .phx-bestSub{
+      margin-top: 8px;
+      color: rgba(255,255,255,.62);
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1.4;
+    }
+
+    .phx-sparkSvg{ width:100%; height:64px; display:block; }
+    .phx-sparkHint{ margin-top: 6px; color: rgba(255,255,255,.55); font-size: 12px; font-weight: 800; }
+
+    .phx-week{
+      display:flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+    .phx-pillDay{
+      display:flex; gap: 10px; align-items:center;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.18);
+      color: rgba(255,255,255,.70);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .phx-pillDay .k{ color: rgba(255,255,255,.55); }
+    .phx-pillDay.is-hot{
+      border-color: rgba(218,84,47,.28);
+      background: rgba(218,84,47,.10);
+      color: rgba(255,255,255,.88);
+    }
+
+    .phx-improveList{ display:grid; gap: 10px; }
+    .phx-imp{
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      padding: 12px;
+      display:grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      align-items:start;
+    }
+    .phx-impTitle{ font-weight: 900; font-size: 13px; margin-bottom: 6px; }
+    .phx-impSub{ color: rgba(255,255,255,.62); font-size: 12px; font-weight: 800; line-height:1.45; }
+    .phx-impTag{
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(218,84,47,.28);
+      background: rgba(218,84,47,.10);
+      color: rgba(255,255,255,.88);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .phx-note{
+      margin-top: 12px;
+      border-radius: 16px;
+      border: 1px dashed rgba(255,255,255,.18);
+      background: rgba(0,0,0,.12);
+      padding: 10px 12px;
+      color: rgba(255,255,255,.60);
+      font-size: 12px;
+      font-weight: 800;
+      display:flex;
+      align-items:center;
+      gap: 10px;
+    }
+    .phx-noteDot{
+      width:10px; height:10px; border-radius:50%;
+      background: rgba(218,84,47,.70);
+      box-shadow: 0 0 14px rgba(218,84,47,.35);
+      flex:0 0 auto;
+    }
+
+    .phx-check{ display:grid; gap: 10px; }
+    .phx-checkItem{
+      display:flex; gap: 10px; align-items:center;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      padding: 10px 12px;
+      color: rgba(255,255,255,.76);
+      font-size: 12px;
+      font-weight: 900;
+    }
+    .phx-checkItem .c{
+      width:12px; height:12px; border-radius:4px;
+      border: 1px solid rgba(218,84,47,.38);
+      background: rgba(218,84,47,.10);
+      box-shadow: 0 0 18px rgba(218,84,47,.12);
+    }
+
+    .phx-miniFooter{
+      margin-top: 12px;
+      display:flex; gap: 10px; align-items:center; flex-wrap:wrap;
+      color: rgba(255,255,255,.65);
+      font-size: 12px;
+      font-weight: 800;
+    }
+    .phx-miniTag{
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.18);
+      letter-spacing:.12em;
+      text-transform: uppercase;
+      font-weight: 900;
+      color: rgba(255,255,255,.70);
+    }
+
+    .phx-retryRow{
+      margin-top: 12px;
+      display:flex;
+      justify-content:space-between;
+      gap: 12px;
+      align-items:center;
+      flex-wrap: wrap;
+    }
+    .phx-ghost{
+      display:inline-flex; align-items:center; gap: 10px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.18);
+      color: rgba(255,255,255,.72);
+      font-weight: 900;
+      letter-spacing:.08em;
+      text-transform: uppercase;
+      font-size: 11px;
+      cursor:pointer;
+    }
+    .phx-ghostDot{
+      width:10px; height:10px; border-radius:50%;
+      background: rgba(218,84,47,.70);
+      box-shadow: 0 0 14px rgba(218,84,47,.35);
+    }
+    .phx-smallHint{ color: rgba(255,255,255,.45); font-size: 12px; font-weight: 800; }
+
+    /* State toggles */
+    .phx-stage.is-loading .phx-loading{ display:block; }
+    .phx-stage.is-loading .phx-board{ display:none; }
+    .phx-stage.is-done .phx-loading{ display:none; }
+    .phx-stage.is-done .phx-board{ display:block; }
+
+    @media (prefers-reduced-motion: reduce){
+      .phx-dot, .phx-btnGlow, .phx-scanline, .phx-progressBar span::after, .phx-glitchWords span::after{ animation:none !important; }
+    }
+  </style>
+
+  <script>
+document.addEventListener("DOMContentLoaded", function(){
+
+  const form = document.getElementById('phxDemoForm');
+  const urlInput = document.getElementById('phxUrl');
+  const stage = document.getElementById('phxStage');
+  const board = document.getElementById('phxBoard');
+
+  if(!form) return; // sécurité
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+
+    const url = (urlInput.value || '').trim();
+    if(!url) return;
+
+    // 🔥 TEST SIMPLE : affiche dashboard direct
+    stage.classList.remove('is-loading');
+    stage.classList.add('is-done');
+    board.hidden = false;
+  });
+
+});
+</script>
+</section>
