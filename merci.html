@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Demande envoyée, Centre Dentaire Venezuela à Tanger</title>
+<meta name="description" content="Votre demande de rendez-vous a bien été transmise au Centre Dentaire Venezuela. Le cabinet vous rappelle aux heures d’ouverture.">
+<meta name="robots" content="noindex, follow">
+
+<style>
+/* Cette page reprend les tokens et la navbar de index.html. Le jour où une
+   deuxième vraie page sera créée, extraire ce socle dans une feuille commune. */
+:root{
+  --ink:#143b3e;
+  --teal2:#c3dfdc;
+  --paper:#fbfcfb;
+  --white:#fff;
+  --teal-deep:#2f6d6b;
+  --teal-soft:#8fb5b1;
+  --teal-btn:#8fbdb6;
+  --nav-link:#3c5c5c;
+  --font:"Avenir Next","Helvetica Neue",Arial,sans-serif;
+  --nav-h:68px;
+  --gutter:4.6%;
+  --radius-btn:14px;
+}
+*{box-sizing:border-box}
+html,body{
+  margin:0;
+  min-height:100%;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--font);
+  -webkit-font-smoothing:antialiased;
+}
+a{text-decoration:none;color:inherit}
+
+/* Navbar, identique à celle de l'accueil */
+.nav{
+  height:var(--nav-h);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:28px;
+  padding:0 var(--gutter);
+  background:rgba(255,255,255,.96);
+}
+.brand{display:flex;flex-direction:column;justify-content:center;gap:4px;line-height:1}
+.brand-kicker{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--teal-soft);font-weight:500}
+.brand-name{font-size:18.6px;letter-spacing:.126em;text-transform:uppercase;color:var(--teal-deep);font-weight:400}
+.brand-doctor{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--teal-soft);font-weight:500;font-style:normal}
+.nav-back{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--nav-link)}
+
+main{
+  display:grid;
+  place-items:center;
+  padding:clamp(48px,10vh,110px) 20px;
+}
+.panel{
+  max-width:560px;
+  text-align:center;
+}
+.check{
+  display:grid;
+  place-items:center;
+  width:74px;
+  height:74px;
+  margin:0 auto 26px;
+  border-radius:50%;
+  background:#eef5f4;
+  color:var(--teal-deep);
+}
+.check svg{width:34px;height:34px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+
+h1{
+  margin:0 0 16px;
+  font-size:clamp(28px,4vw,40px);
+  font-weight:300;
+  line-height:1.14;
+  letter-spacing:.005em;
+}
+h1 span{color:var(--teal-deep)}
+.lead{margin:0;font-size:15px;line-height:1.7;color:#5d7d7c}
+
+.actions{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin-top:30px}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  height:50px;
+  padding:0 24px;
+  border-radius:var(--radius-btn);
+  font-size:13.5px;
+  font-weight:600;
+}
+.btn--primary{background:var(--teal-btn);color:var(--white);box-shadow:0 12px 28px rgba(26,69,70,.2)}
+.btn--ghost{border:1px solid rgba(47,109,107,.35);color:var(--teal-deep)}
+.btn svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+
+.hours{
+  margin:34px auto 0;
+  max-width:420px;
+  padding:18px 20px;
+  border:1px solid rgba(20,59,62,.12);
+  border-radius:16px;
+  background:var(--white);
+  font-size:13px;
+  line-height:1.7;
+  color:#5d7d7c;
+  text-align:left;
+}
+.hours b{display:block;margin-bottom:6px;font-size:13.5px;color:var(--ink)}
+
+@media(max-width:720px){
+  :root{--nav-h:58px}
+  .nav{padding:0 20px}
+  .brand-doctor{display:none}
+  .btn{width:100%;justify-content:center}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <nav class="nav" aria-label="Navigation principale">
+    <a class="brand" href="/">
+      <span class="brand-kicker">Cabinet dentaire</span>
+      <span class="brand-name">Venezuela</span>
+      <span class="brand-doctor">Dr. Majda Laasraoui</span>
+    </a>
+    <a class="nav-back" href="/">Retour à l’accueil</a>
+  </nav>
+</header>
+
+<main>
+  <div class="panel">
+    <span class="check" aria-hidden="true">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5"/><path d="m8 12.3 2.6 2.6L16 9.5"/></svg>
+    </span>
+
+    <h1>Votre demande<br><span>nous est bien parvenue.</span></h1>
+    <p class="lead">Le cabinet vous rappelle aux heures d’ouverture pour fixer votre rendez-vous. Si votre situation est urgente, appelez-nous directement plutôt que d’attendre notre retour.</p>
+
+    <div class="actions">
+      <a class="btn btn--primary" href="tel:+212531112127">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        +212 5 31 11 21 27
+      </a>
+      <a class="btn btn--ghost" href="/">Revenir au site</a>
+    </div>
+
+    <div class="hours">
+      <b>Horaires du cabinet</b>
+      Lundi, mercredi et vendredi : 9h30 à 17h30<br>
+      Mardi et jeudi : 9h30 à 13h00, puis 15h00 à 18h30<br>
+      Samedi : 10h00 à 14h00<br>
+      Dimanche : fermé
+    </div>
+  </div>
+</main>
+
+<script>
+/* Même calage de la marque que sur l'accueil : les deux lignes doivent se
+   terminer au même endroit quelle que soit la police réellement rendue. */
+(function () {
+  var kicker = document.querySelector('.brand-kicker');
+  var nom = document.querySelector('.brand-name');
+  if (!kicker || !nom) return;
+  function largeurTexte(el) {
+    var plage = document.createRange();
+    plage.selectNodeContents(el);
+    return plage.getBoundingClientRect().width - (parseFloat(getComputedStyle(el).letterSpacing) || 0);
+  }
+  function caler() {
+    nom.style.fontSize = '';
+    var base = parseFloat(getComputedStyle(nom).fontSize);
+    var reference = largeurTexte(kicker), actuelle = largeurTexte(nom);
+    if (reference && actuelle) nom.style.fontSize = (base * reference / actuelle).toFixed(2) + 'px';
+  }
+  caler();
+  window.addEventListener('resize', caler);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(caler);
+})();
+</script>
+</body>
+</html>
