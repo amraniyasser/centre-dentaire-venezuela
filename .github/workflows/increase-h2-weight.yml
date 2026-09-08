@@ -1,0 +1,24 @@
+name: Increase H2 weight
+
+on:
+  push:
+    paths:
+      - '.github/scripts/increase_h2_weight.py'
+      - '.github/workflows/increase-h2-weight.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 .github/scripts/increase_h2_weight.py
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html blog/index.html */index.html
+          git diff --cached --quiet && exit 0
+          git commit -m "Increase H2 font weight across site"
+          git push
