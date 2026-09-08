@@ -1,0 +1,23 @@
+name: Redesign services grid
+
+on:
+  push:
+    paths:
+      - '.github/scripts/redesign_soins_grid.py'
+      - '.github/workflows/apply-soins-grid.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 .github/scripts/redesign_soins_grid.py
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git commit -m "Show all seven services in a responsive grid" || exit 0
+          git push
