@@ -2368,14 +2368,9 @@ a.footer-contact:hover .footer-chip{background:rgba(255,255,255,.14);border-colo
       <div class="contact-grid">
 
         <div class="form-card" id="rdv">
-          <!-- Netlify Forms : data-netlify déclare le formulaire au déploiement, le champ
-               caché form-name identifie l'envoi, et bot-field est le piège à robots.
-               Ces trois éléments ne fonctionnent que sur un hébergement Netlify. -->
-          <form name="rendez-vous" method="POST" action="/merci" data-netlify="true" data-netlify-honeypot="bot-field">
-            <input type="hidden" name="form-name" value="rendez-vous">
-            <p class="honeypot" aria-hidden="true">
-              <label>Ne pas remplir ce champ <input name="bot-field" tabindex="-1" autocomplete="off"></label>
-            </p>
+          <!-- Le formulaire reste entièrement local : au clic, le JavaScript construit
+               le message puis ouvre WhatsApp avec les informations préremplies. -->
+          <form id="rdv-form" name="rendez-vous">
             <div class="form-grid">
 
               <div class="field">
@@ -2448,7 +2443,7 @@ a.footer-contact:hover .footer-chip{background:rgba(255,255,255,.14);border-colo
               <svg aria-hidden="true"><use href="#i-shield"/></svg>
               <div>
                 <b>Vos données restent confidentielles</b>
-                <p>Les informations transmises servent uniquement à traiter votre demande de rendez-vous. Elles ne sont ni revendues ni partagées.</p>
+                <p>Les informations saisies servent uniquement à préparer votre message WhatsApp vers le cabinet. Aucun formulaire n’est stocké par ce site.</p>
               </div>
             </div>
         </div>
@@ -2613,6 +2608,39 @@ a.footer-contact:hover .footer-chip{background:rgba(255,255,255,.14);border-colo
 
 
 <script>
+/* Formulaire de rendez-vous : construit un message WhatsApp à partir des
+   informations saisies, puis ouvre WhatsApp avec le message prérempli. */
+(function () {
+  var form = document.getElementById('rdv-form');
+  if (!form) return;
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!form.reportValidity()) return;
+
+    var nom = document.getElementById('rdv-nom').value.trim();
+    var motif = document.getElementById('rdv-motif').value;
+    var telephone = document.getElementById('rdv-tel').value.trim();
+    var creneau = document.getElementById('rdv-creneau').value || 'Indifférent';
+    var messageLibre = document.getElementById('rdv-message').value.trim();
+
+    var lignes = [
+      'Bonjour, je souhaite prendre rendez-vous au Centre Dentaire Venezuela.',
+      '',
+      'Nom : ' + nom,
+      'Motif : ' + motif,
+      'Téléphone : ' + telephone,
+      'Créneau préféré : ' + creneau
+    ];
+
+    if (messageLibre) lignes.push('Message : ' + messageLibre);
+
+    var whatsappUrl = 'https://wa.me/212771158018?text=' + encodeURIComponent(lignes.join('\n'));
+    var nouvelleFenetre = window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+    if (!nouvelleFenetre) window.location.href = whatsappUrl;
+  });
+})();
+
 /* Comparateurs avant / après : glisser à la souris et au doigt, clic direct,
    et flèches du clavier via l'input range invisible. */
 document.querySelectorAll('.ba-slider').forEach(function (slider) {
