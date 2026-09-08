@@ -1,0 +1,23 @@
+name: Sync service labels
+
+on:
+  push:
+    paths:
+      - '.github/scripts/sync_service_labels.py'
+      - '.github/workflows/apply-service-label-sync.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 .github/scripts/sync_service_labels.py
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git commit -m "Sync service labels across footer and form" || exit 0
+          git push
