@@ -5,6 +5,7 @@ on:
   push:
     paths:
       - '.github/workflows/full-seo-audit-2026-09-09.yml'
+      - '.github/scripts/full_seo_audit_v2_2026_09_09.py'
 
 permissions:
   contents: write
@@ -17,7 +18,7 @@ jobs:
       - name: Run full SEO audit
         id: audit
         continue-on-error: true
-        run: python .github/scripts/full_seo_audit_2026_09_09.py
+        run: python .github/scripts/full_seo_audit_v2_2026_09_09.py
       - name: Commit audit report
         run: |
           git config user.name "github-actions[bot]"
