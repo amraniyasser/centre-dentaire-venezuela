@@ -62,16 +62,16 @@ img,svg{display:block}
 
 .hero{margin:0 1.05vw 28px;border-radius:34px;overflow:hidden;background:linear-gradient(135deg,#173e40 0%,#2c6663 58%,#7faeaa 100%);color:#fff;position:relative}
 .hero:after{content:"";position:absolute;width:520px;height:520px;right:-170px;top:-180px;border-radius:50%;border:1px solid rgba(255,255,255,.13);box-shadow:0 0 0 80px rgba(255,255,255,.035),0 0 0 160px rgba(255,255,255,.025)}
-.hero-inner{max-width:1400px;margin:0 auto;padding:26px var(--gutter) 62px;position:relative;z-index:1}
-.breadcrumbs{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:40px;font-size:12px;color:rgba(255,255,255,.7)}
+.hero-inner{max-width:1400px;margin:0 auto;padding:18px var(--gutter) 38px;position:relative;z-index:1}
+.breadcrumbs{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:24px;font-size:12px;color:rgba(255,255,255,.7)}
 .breadcrumbs a:hover{color:#fff}
-.hero-grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(290px,.65fr);gap:clamp(36px,6vw,88px);align-items:center}
-.eyebrow{display:inline-flex;align-items:center;gap:9px;margin-bottom:17px;font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#d8e8e6}
+.hero-grid{display:block}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;margin-bottom:12px;font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#d8e8e6}
 .eyebrow:before{content:"";width:28px;height:2px;background:var(--gold)}
-h1{margin:0;max-width:840px;font-size:clamp(44px,6vw,82px);font-weight:300;line-height:.98;letter-spacing:-.025em}
+h1{margin:0;max-width:none;font-size:clamp(40px,4.8vw,68px);font-weight:300;line-height:1;letter-spacing:-.025em;white-space:nowrap}
 h1 span{color:var(--gold)}
-.hero-lead{max-width:720px;margin:24px 0 0;font-size:17px;line-height:1.72;color:rgba(255,255,255,.9)}
-.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.hero-lead{max-width:760px;margin:14px 0 0;font-size:16px;line-height:1.62;color:rgba(255,255,255,.9)}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px}
 .btn{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:0 23px;border-radius:14px;font-size:13.5px;font-weight:700;transition:transform .2s,background .2s}
 .btn:hover{transform:translateY(-1px)}
 .btn-light{background:#fff;color:var(--teal-deep)}
@@ -155,7 +155,7 @@ p{font-size:15px;line-height:1.78;color:var(--muted)}
   .links{display:none}.nav-menu{display:block}.hero-grid,.content-grid,.local-card{grid-template-columns:1fr}.quick{max-width:560px}.note{position:static}.steps{grid-template-columns:1fr 1fr}.facts-grid{grid-template-columns:1fr 1fr}.footer-inner{grid-template-columns:1fr 1fr}
 }
 @media(max-width:680px){
-  :root{--nav-h:58px}.nav{padding:0 20px}.brand-kicker{font-size:8.5px}.brand-name{font-size:16px}.nav-rdv{height:36px;padding:0 13px;font-size:10px}.hero{margin:0 8px 18px;border-radius:24px}.hero-inner{padding:22px 20px 38px}.breadcrumbs{margin-bottom:28px}h1{font-size:clamp(38px,12vw,54px)}.hero-lead{font-size:15px}.hero-actions{flex-direction:column}.btn{width:100%}.section{padding:52px 20px}.steps,.compare,.facts-grid{grid-template-columns:1fr}.local-copy,.local-info{padding:28px 22px}.footer-inner{grid-template-columns:1fr;padding:38px 20px}.footer p{max-width:44ch}}
+  :root{--nav-h:58px}.nav{padding:0 20px}.brand-kicker{font-size:8.5px}.brand-name{font-size:16px}.nav-rdv{height:36px;padding:0 13px;font-size:10px}.hero{margin:0 8px 18px;border-radius:24px}.hero-inner{padding:16px 20px 28px}.breadcrumbs{margin-bottom:18px}h1{font-size:clamp(34px,10vw,50px);white-space:normal}.hero-lead{font-size:15px}.hero-actions{flex-direction:column}.btn{width:100%}.section{padding:52px 20px}.steps,.compare,.facts-grid{grid-template-columns:1fr}.local-copy,.local-info{padding:28px 22px}.footer-inner{grid-template-columns:1fr;padding:38px 20px}.footer p{max-width:44ch}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn{transition:none}}
 </style>
 </head>
@@ -190,7 +190,7 @@ p{font-size:15px;line-height:1.78;color:var(--muted)}
 <main>
 <section class="hero">
   <div class="hero-inner">
-    <nav class="breadcrumbs" aria-label="Fil d’Ariane"><a href="/">Accueil</a><span>›</span><a href="/#soins">Nos soins</a><span>›</span><span>Implantologie</span></nav>
+    <nav class="breadcrumbs" aria-label="Fil d’Ariane"><a href="/">Accueil</a> / <a href="/#soins">Nos soins</a> / <span>Implant dentaire</span></nav>
     <div class="hero-grid">
       <div>
         <span class="eyebrow">Implantologie dentaire à Tanger</span>
@@ -201,15 +201,6 @@ p{font-size:15px;line-height:1.78;color:var(--muted)}
           <a class="btn btn-outline" href="https://wa.me/212771158018" target="_blank" rel="noopener">WhatsApp</a>
         </div>
       </div>
-      <aside class="quick" aria-label="À retenir sur les implants dentaires">
-        <span class="quick-kicker">À retenir</span>
-        <ul>
-          <li><span class="check">✓</span><span>Un implant remplace la racine d’une dent absente et sert de support à une future couronne ou prothèse.</span></li>
-          <li><span class="check">✓</span><span>La faisabilité dépend notamment de l’état bucco-dentaire, de l’os disponible et de l’état de santé général.</span></li>
-          <li><span class="check">✓</span><span>Le calendrier du traitement varie selon chaque situation clinique et la cicatrisation.</span></li>
-        </ul>
-        <small>Un examen clinique est indispensable avant de confirmer l’indication d’un implant.</small>
-      </aside>
     </div>
   </div>
 </section>
