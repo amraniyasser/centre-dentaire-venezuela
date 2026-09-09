@@ -1,11 +1,11 @@
 # Audit SEO technique complet
 
 - Fichiers HTML analysés : **10**
-- Erreurs bloquantes / techniques : **1**
+- Erreurs bloquantes / techniques : **0**
 - Avertissements : **0**
 
 ## Erreurs
-- index.html: image sans alt: TAG=<img>
+- Aucune erreur détectée par les contrôles automatisés.
 
 ## Inventaire
 | Page | Title chars | Meta chars | Mots | Indexable |
