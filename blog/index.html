@@ -17,21 +17,342 @@
 <meta property="og:url" content="https://centredentairevenezuela.com/blog/">
 <meta property="og:image" content="https://centredentairevenezuela.com/assets/images/hero-poster-cabinet-dentaire-venezuela-tanger.webp">
 <style>
-:root{--ink:#143b3e;--teal:#8abdb8;--teal2:#c3dfdc;--deep:#2f6d6b;--gold:#e5bd8c;--paper:#fbfcfb;--white:#fff;--muted:#5d7d7c;--line:rgba(20,59,62,.11);--font:"Avenir Next","Helvetica Neue",Arial,sans-serif}
-*{box-sizing:border-box}html,body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font);-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}.wrap{max-width:1180px;margin:auto;padding:0 22px}
-.top{position:sticky;top:0;z-index:20;height:68px;background:rgba(255,255,255,.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}.top .wrap{height:100%;display:flex;align-items:center;justify-content:space-between;gap:24px}.brand{display:flex;flex-direction:column;gap:4px;line-height:1}.brand small{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:#8fb5b1}.brand b{font-size:17px;letter-spacing:.12em;text-transform:uppercase;color:var(--deep);font-weight:500}.nav{display:flex;gap:24px;align-items:center;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}.nav a:hover{color:var(--deep)}.nav .cta{padding:11px 16px;border-radius:10px;background:var(--teal);color:white}
-.hero{margin:18px 1.1vw 0;border-radius:32px;overflow:hidden;background:linear-gradient(125deg,#143b3e 0%,#2f6d6b 54%,#8abdb8 100%);color:white}.hero .wrap{padding-top:82px;padding-bottom:82px}.eyebrow{display:block;margin-bottom:18px;font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#cfe3e1}.rule{width:58px;height:3px;border-radius:3px;background:var(--gold);margin-bottom:24px}h1{font-size:clamp(42px,6vw,76px);line-height:1.02;font-weight:300;margin:0;max-width:850px}.hero p{max-width:680px;font-size:17px;line-height:1.7;color:rgba(255,255,255,.9);margin:22px 0 0}
-.main{padding:72px 0}.empty{max-width:820px;margin:auto;text-align:center;padding:58px 34px;border:1px solid var(--line);border-radius:26px;background:white;box-shadow:0 18px 44px rgba(20,59,62,.06)}.empty span{display:inline-block;margin-bottom:16px;font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#8fb5b1}.empty h2{margin:0 0 14px;font-size:clamp(28px,3.2vw,42px);font-weight:350;line-height:1.15}.empty p{max-width:620px;margin:0 auto;color:var(--muted);font-size:15px;line-height:1.75}.actions{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin-top:26px}.btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 20px;border-radius:12px;font-weight:700;font-size:13px}.btn-primary{background:var(--ink);color:white}.btn-secondary{background:#eef6f5;color:var(--deep)}
-.foot{background:var(--ink);color:white;margin-top:58px}.foot .wrap{padding-top:34px;padding-bottom:34px;display:flex;justify-content:space-between;gap:20px;align-items:center}.foot p{margin:0;font-size:12px;color:rgba(255,255,255,.7)}.foot a{font-size:12px;color:var(--teal2)}
-@media(max-width:780px){.nav a:not(.cta){display:none}.hero{border-radius:24px;margin-left:8px;margin-right:8px}.hero .wrap{padding-top:56px;padding-bottom:56px}.hero p{font-size:15px}.main{padding:48px 0}.empty{padding:42px 22px}.foot .wrap{flex-direction:column;align-items:flex-start}}
+:root{
+  --ink:#143b3e;
+  --deep:#2f6d6b;
+  --teal:#8abdb8;
+  --teal2:#c3dfdc;
+  --soft:#8fb5b1;
+  --gold:#e5bd8c;
+  --paper:#f7faf9;
+  --white:#fff;
+  --muted:#5d7d7c;
+  --line:rgba(20,59,62,.11);
+  --font:"Avenir Next","Helvetica Neue",Arial,sans-serif;
+  --nav:68px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img,svg{display:block}
+.wrap{width:min(1180px,calc(100% - 44px));margin:auto}
+
+/* Header */
+.top{position:sticky;top:0;z-index:50;height:var(--nav);background:rgba(255,255,255,.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.top .wrap{height:100%;display:flex;align-items:center;justify-content:space-between;gap:26px}
+.brand{display:flex;flex-direction:column;gap:4px;line-height:1}
+.brand small{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--soft)}
+.brand b{font-size:17px;letter-spacing:.12em;text-transform:uppercase;color:var(--deep);font-weight:500}
+.nav{display:flex;align-items:center;gap:24px;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.nav a:hover{color:var(--deep)}
+.nav .cta{padding:11px 16px;border-radius:10px;background:var(--teal);color:#fff}
+
+/* Hero */
+.hero{position:relative;overflow:hidden;margin:18px 1.1vw 0;border-radius:34px;background:linear-gradient(118deg,#143b3e 0%,#285d5d 52%,#86b5b0 100%);color:#fff}
+.hero:after{content:"";position:absolute;width:520px;height:520px;right:-170px;top:-230px;border-radius:50%;border:1px solid rgba(255,255,255,.13);box-shadow:0 0 0 86px rgba(255,255,255,.035),0 0 0 172px rgba(255,255,255,.02)}
+.hero .wrap{position:relative;z-index:1;padding-top:82px;padding-bottom:78px}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;margin-bottom:20px;font-size:10.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#d8e8e6}
+.eyebrow:before{content:"";width:30px;height:2px;background:var(--gold)}
+h1{margin:0;max-width:850px;font-size:clamp(44px,6.4vw,78px);font-weight:300;line-height:1.01;letter-spacing:-.025em}
+h1 span{color:var(--gold)}
+.hero p{max-width:730px;margin:24px 0 0;font-size:17px;line-height:1.72;color:rgba(255,255,255,.88)}
+
+/* Category strip */
+.category-strip{margin-top:-24px;position:relative;z-index:3}
+.category-bar{display:flex;gap:9px;overflow-x:auto;padding:10px;border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.96);box-shadow:0 16px 38px rgba(20,59,62,.10);scrollbar-width:none}
+.category-bar::-webkit-scrollbar{display:none}
+.category-bar a{flex:none;padding:11px 14px;border-radius:11px;font-size:11px;font-weight:700;white-space:nowrap;color:#4c6e6d;background:#f4f8f7;transition:.2s}
+.category-bar a:hover{background:var(--ink);color:#fff}
+
+/* Main */
+main{padding-bottom:0}
+.section{padding:76px 0}
+.section-head{display:flex;justify-content:space-between;gap:36px;align-items:end;margin-bottom:34px}
+.section-copy{max-width:760px}
+.kicker{display:block;margin-bottom:11px;font-size:10.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--soft)}
+h2{margin:0;font-size:clamp(31px,4vw,48px);font-weight:350;line-height:1.1;letter-spacing:-.015em}
+.section-lead{max-width:680px;margin:15px 0 0;font-size:15px;line-height:1.75;color:var(--muted)}
+
+/* Categories */
+.categories{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.category-card{position:relative;min-height:285px;padding:30px;border:1px solid var(--line);border-radius:24px;background:#fff;overflow:hidden;transition:transform .2s,box-shadow .2s,border-color .2s}
+.category-card:hover{transform:translateY(-3px);box-shadow:0 18px 44px rgba(20,59,62,.08);border-color:rgba(47,109,107,.22)}
+.category-card:after{content:"";position:absolute;width:180px;height:180px;border-radius:50%;right:-80px;top:-90px;background:linear-gradient(145deg,rgba(195,223,220,.42),rgba(229,189,140,.16));pointer-events:none}
+.category-card.wide{grid-column:1/-1;display:grid;grid-template-columns:1.05fr .95fr;gap:32px;align-items:end;min-height:260px;background:linear-gradient(120deg,#143b3e,#285e5d);color:#fff;border-color:transparent}
+.category-card.wide:after{width:340px;height:340px;right:-110px;top:-170px;background:transparent;border:1px solid rgba(255,255,255,.13);box-shadow:0 0 0 70px rgba(255,255,255,.025)}
+.category-num{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;margin-bottom:42px;border-radius:12px;background:#eef6f5;color:var(--deep);font-size:11px;font-weight:800;letter-spacing:.08em}
+.category-card.wide .category-num{margin-bottom:30px;background:rgba(255,255,255,.1);color:var(--gold);border:1px solid rgba(255,255,255,.13)}
+.category-card h3{position:relative;z-index:1;margin:0;font-size:clamp(23px,2.5vw,31px);font-weight:500;line-height:1.14}
+.category-card p{position:relative;z-index:1;max-width:520px;margin:12px 0 0;font-size:14px;line-height:1.65;color:var(--muted)}
+.category-card.wide p{color:rgba(255,255,255,.72)}
+.topics{position:relative;z-index:1;display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.topic{padding:7px 10px;border-radius:999px;background:#eef6f5;color:var(--deep);font-size:10.5px;font-weight:650}
+.category-card.wide .topic{background:rgba(255,255,255,.08);color:#dcebea;border:1px solid rgba(255,255,255,.10)}
+.card-actions{position:relative;z-index:1;display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+.card-link{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:750;color:var(--deep)}
+.card-link:after{content:"→"}
+.category-card.wide .card-link{color:#fff}
+.service-link{font-size:11.5px;color:#799492;text-decoration:underline;text-underline-offset:3px}
+.category-card.wide .service-link{color:#bcd6d3}
+.wide-side{position:relative;z-index:1;padding:24px;border-radius:20px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.10)}
+.wide-side small{display:block;margin-bottom:12px;font-size:10px;font-weight:800;letter-spacing:.17em;text-transform:uppercase;color:var(--teal2)}
+.wide-side strong{display:block;font-size:18px;line-height:1.35;font-weight:500}
+.wide-side p{margin-top:8px}
+
+/* Latest articles empty state */
+.latest{background:#eef5f4}
+.latest-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:18px}
+.latest-main{padding:34px;border-radius:26px;background:#fff;border:1px solid var(--line)}
+.latest-main .label{display:inline-flex;padding:7px 10px;border-radius:999px;background:#eef6f5;color:var(--deep);font-size:10px;font-weight:800;letter-spacing:.10em;text-transform:uppercase}
+.latest-main h3{margin:24px 0 10px;font-size:clamp(26px,3vw,38px);font-weight:400;line-height:1.15}
+.latest-main p{max-width:600px;margin:0;color:var(--muted);font-size:14.5px;line-height:1.72}
+.latest-aside{display:grid;gap:18px}
+.mini-card{padding:25px;border-radius:22px;background:rgba(255,255,255,.62);border:1px solid rgba(20,59,62,.09)}
+.mini-card span{display:block;margin-bottom:11px;font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--soft)}
+.mini-card strong{display:block;font-size:17px;line-height:1.45;font-weight:600}
+.mini-card p{margin:8px 0 0;font-size:13.5px;line-height:1.6;color:var(--muted)}
+
+/* Trust + CTA */
+.editorial{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.editorial-card{padding:32px;border-radius:24px;background:#fff;border:1px solid var(--line)}
+.editorial-card.dark{background:var(--ink);color:#fff;border-color:transparent}
+.editorial-card h3{margin:0 0 12px;font-size:23px;font-weight:500}
+.editorial-card p{margin:0;font-size:14px;line-height:1.72;color:var(--muted)}
+.editorial-card.dark p{color:rgba(255,255,255,.7)}
+.editorial-card a{display:inline-flex;margin-top:20px;font-size:12px;font-weight:750;color:var(--deep)}
+.editorial-card.dark a{color:var(--teal2)}
+
+.cta-block{margin:0 1.1vw 0;border-radius:30px;background:linear-gradient(118deg,#143b3e,#2f6d6b);color:#fff;overflow:hidden}
+.cta-inner{width:min(1180px,calc(100% - 44px));margin:auto;padding:58px 0;display:flex;align-items:center;justify-content:space-between;gap:34px}
+.cta-copy{max-width:690px}
+.cta-copy .kicker{color:var(--teal2)}
+.cta-copy h2{color:#fff}
+.cta-copy p{margin:13px 0 0;color:rgba(255,255,255,.72);font-size:14.5px;line-height:1.7}
+.cta-actions{display:flex;flex-wrap:wrap;gap:10px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 19px;border-radius:12px;font-size:12.5px;font-weight:750}
+.btn-light{background:#fff;color:var(--ink)}
+.btn-outline{border:1px solid rgba(255,255,255,.30);color:#fff;background:rgba(255,255,255,.06)}
+
+/* Footer */
+.foot{margin-top:54px;background:#102f31;color:#fff}
+.foot-grid{display:grid;grid-template-columns:1.2fr .8fr .8fr;gap:40px;padding:44px 0}
+.foot-brand{font-size:21px;font-weight:600}.foot-brand span{display:block;color:var(--teal2)}
+.foot p{max-width:420px;margin:13px 0 0;font-size:13px;line-height:1.65;color:rgba(255,255,255,.58)}
+.foot-head{margin-bottom:13px;font-size:10px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--teal2)}
+.foot-links{display:flex;flex-direction:column;gap:9px}
+.foot-links a{font-size:13px;color:rgba(255,255,255,.75)}
+.foot-links a:hover{color:#fff}
+.signature{padding:17px 22px;border-top:1px solid rgba(255,255,255,.08);text-align:center;font-size:11px;color:rgba(255,255,255,.42)}
+
+[id]{scroll-margin-top:92px}
+@media(max-width:920px){
+  .nav a:not(.cta){display:none}
+  .categories{grid-template-columns:1fr}
+  .category-card.wide{grid-column:auto;grid-template-columns:1fr}
+  .latest-grid,.editorial{grid-template-columns:1fr}
+  .cta-inner{align-items:flex-start;flex-direction:column}
+  .foot-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:620px){
+  :root{--nav:60px}
+  .wrap{width:min(100% - 36px,1180px)}
+  .hero{margin-left:8px;margin-right:8px;border-radius:24px}
+  .hero .wrap{padding-top:56px;padding-bottom:58px}
+  .hero p{font-size:15px}
+  .category-strip{margin-top:-18px}
+  .category-bar{border-radius:15px}
+  .section{padding:56px 0}
+  .section-head{display:block}
+  .category-card{min-height:0;padding:24px;border-radius:20px}
+  .category-num{margin-bottom:28px}
+  .category-card.wide{min-height:0}
+  .latest-main{padding:26px}
+  .editorial-card{padding:26px}
+  .cta-block{margin-left:8px;margin-right:8px;border-radius:24px}
+  .cta-inner{width:calc(100% - 36px);padding:44px 0}
+  .cta-actions{width:100%}.cta-actions .btn{width:100%}
+  .foot-grid{grid-template-columns:1fr;padding:38px 0}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.category-card{transition:none}}
 </style>
 </head>
 <body>
-<header class="top"><div class="wrap"><a class="brand" href="/"><small>Cabinet dentaire</small><b>Venezuela</b></a><nav class="nav" aria-label="Navigation"><a href="/">Accueil</a><a href="/#soins">Nos soins</a><a href="/blog/" aria-current="page">Blog</a><a class="cta" href="/#rdv">Prendre RDV</a></nav></div></header>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="/"><small>Cabinet dentaire</small><b>Venezuela</b></a>
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="/">Accueil</a>
+      <a href="/#cabinet">Le cabinet</a>
+      <a href="/#soins">Nos soins</a>
+      <a href="/blog/" aria-current="page">Blog</a>
+      <a class="cta" href="/#rdv">Prendre RDV</a>
+    </nav>
+  </div>
+</header>
+
 <main>
-<section class="hero"><div class="wrap"><span class="eyebrow">Centre Dentaire Venezuela · Tanger</span><div class="rule"></div><h1>Conseils & actualités dentaires</h1><p>Une section dédiée aux questions fréquentes sur les soins dentaires, l’implantologie, l’orthodontie, l’esthétique dentaire et la santé des gencives.</p></div></section>
-<section class="main"><div class="wrap"><div class="empty"><span>Blog</span><h2>Les premiers articles arrivent bientôt</h2><p>Nous préparons des contenus utiles et clairs autour des questions que nos patients se posent le plus souvent. La section sera enrichie progressivement.</p><div class="actions"><a class="btn btn-primary" href="/#soins">Voir nos soins</a><a class="btn btn-secondary" href="/#rdv">Prendre rendez-vous</a></div></div></div></section>
+  <section class="hero">
+    <div class="wrap">
+      <span class="eyebrow">Centre Dentaire Venezuela · Tanger</span>
+      <h1>Conseils & informations <span>dentaires</span></h1>
+      <p>Des réponses claires aux questions que nos patients se posent sur les soins dentaires, l’esthétique du sourire, les implants, l’orthodontie et la santé bucco-dentaire.</p>
+    </div>
+  </section>
+
+  <div class="category-strip">
+    <div class="wrap">
+      <nav class="category-bar" aria-label="Catégories du blog">
+        <a href="#soins-generaux">Soins dentaires</a>
+        <a href="#chirurgie">Chirurgie dentaire</a>
+        <a href="#esthetique">Dentisterie esthétique</a>
+        <a href="#implantologie">Implantologie</a>
+        <a href="#endodontie">Endodontie</a>
+        <a href="#parodontologie">Parodontologie</a>
+        <a href="#orthodontie">Orthodontie</a>
+      </nav>
+    </div>
+  </div>
+
+  <section class="section" aria-labelledby="themes-title">
+    <div class="wrap">
+      <header class="section-head">
+        <div class="section-copy">
+          <span class="kicker">Explorer le blog</span>
+          <h2 id="themes-title">7 thèmes pour mieux comprendre votre santé dentaire</h2>
+          <p class="section-lead">Chaque rubrique reprend l’un des grands domaines de soins proposés au cabinet. Les futurs articles répondront à des questions précises, sans remplacer une consultation ou un diagnostic.</p>
+        </div>
+      </header>
+
+      <div class="categories">
+        <article class="category-card wide" id="esthetique">
+          <div>
+            <span class="category-num">01</span>
+            <h3>Dentisterie esthétique</h3>
+            <p>Blanchiment, facettes, couleur des dents et harmonie du sourire : comprendre les différentes options et leurs indications.</p>
+            <div class="topics" aria-label="Sujets de la catégorie Dentisterie esthétique">
+              <span class="topic">Blanchiment dentaire</span><span class="topic">Facettes</span><span class="topic">Teinte des dents</span><span class="topic">Couronnes</span>
+            </div>
+            <div class="card-actions"><a class="card-link" href="#articles">Voir les futurs articles</a><a class="service-link" href="/dentisterie-esthetique-tanger/">Découvrir la dentisterie esthétique</a></div>
+          </div>
+          <aside class="wide-side">
+            <small>Premier dossier prévu</small>
+            <strong>Le blanchiment dentaire, expliqué simplement</strong>
+            <p>Durée des résultats, précautions, sensibilité et questions fréquentes seront traitées progressivement dans cette rubrique.</p>
+          </aside>
+        </article>
+
+        <article class="category-card" id="soins-generaux">
+          <span class="category-num">02</span>
+          <h3>Soins dentaires généraux</h3>
+          <p>Prévention, contrôle, détartrage, caries, obturations et habitudes utiles au quotidien.</p>
+          <div class="topics"><span class="topic">Caries</span><span class="topic">Détartrage</span><span class="topic">Sensibilité</span></div>
+          <div class="card-actions"><a class="card-link" href="#articles">Voir les futurs articles</a><a class="service-link" href="/soins-dentaires-tanger/">Découvrir les soins</a></div>
+        </article>
+
+        <article class="category-card" id="chirurgie">
+          <span class="category-num">03</span>
+          <h3>Chirurgie dentaire</h3>
+          <p>Extractions, cicatrisation, frénectomie, gingivectomie et préparation aux actes chirurgicaux.</p>
+          <div class="topics"><span class="topic">Extraction</span><span class="topic">Cicatrisation</span><span class="topic">Chirurgie orale</span></div>
+          <div class="card-actions"><a class="card-link" href="#articles">Voir les futurs articles</a><a class="service-link" href="/chirurgie-dentaire-tanger/">Découvrir la chirurgie</a></div>
+        </article>
+
+        <article class="category-card" id="implantologie">
+          <span class="category-num">04</span>
+          <h3>Implantologie</h3>
+          <p>Pose d’implant, cicatrisation, remplacement d’une dent et comparaison avec les autres solutions prothétiques.</p>
+          <div class="topics"><span class="topic">Implant dentaire</span><span class="topic">Implant ou bridge</span><span class="topic">Cicatrisation</span></div>
+          <div class="card-actions"><a class="card-link" href="#articles">Voir les futurs articles</a><a class="service-link" href="/implant-dentaire-tanger/">Découvrir l’implantologie</a></div>
+        </article>
+
+        <article class="category-card" id="endodontie">
+          <span class="category-num">05</span>
+          <h3>Endodontie</h3>
+          <p>Traitement de canal, douleur dentaire, caries profondes et conservation des dents atteintes en profondeur.</p>
+          <div class="topics"><span class="topic">Traitement de canal</span><span class="topic">Douleur dentaire</span><span class="topic">Dent dévitalisée</span></div>
+          <div class="card-actions"><a class="card-link" href="#articles">Voir les futurs articles</a><a class="service-link" href="/endodontie-tanger/">Découvrir l’endodontie</a></div>
+        </article>
+
+        <article class="category-card" id="parodontologie">
+          <span class="category-num">06</span>
+          <h3>Parodontologie</h3>
+          <p>Saignement des gencives, inflammation, rétraction gingivale, parodontite et maintien parodontal.</p>
+          <div class="topics"><span class="topic">Gencives qui saignent</span><span class="topic">Parodontite</span><span class="topic">Déchaussement</span></div>
+          <div class="card-actions"><a class="card-link" href="#articles">Voir les futurs articles</a><a class="service-link" href="/parodontologie-tanger/">Découvrir la parodontologie</a></div>
+        </article>
+
+        <article class="category-card" id="orthodontie">
+          <span class="category-num">07</span>
+          <h3>Orthodontie</h3>
+          <p>Bagues, aligneurs invisibles, malocclusions, hygiène pendant le traitement et questions sur la durée.</p>
+          <div class="topics"><span class="topic">Bagues</span><span class="topic">Aligneurs</span><span class="topic">Appareil dentaire</span></div>
+          <div class="card-actions"><a class="card-link" href="#articles">Voir les futurs articles</a><a class="service-link" href="/orthodontie-tanger/">Découvrir l’orthodontie</a></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section latest" id="articles" aria-labelledby="articles-title">
+    <div class="wrap">
+      <header class="section-head">
+        <div class="section-copy">
+          <span class="kicker">Les articles</span>
+          <h2 id="articles-title">Les premiers contenus arrivent bientôt</h2>
+          <p class="section-lead">Le blog est maintenant structuré. Les articles seront publiés progressivement, rubrique par rubrique, en commençant par la dentisterie esthétique et le blanchiment dentaire.</p>
+        </div>
+      </header>
+      <div class="latest-grid">
+        <div class="latest-main">
+          <span class="label">À venir · Dentisterie esthétique</span>
+          <h3>Une série dédiée au blanchiment dentaire</h3>
+          <p>Nous préparerons plusieurs articles distincts autour du blanchiment : durée des résultats, précautions, sensibilité, entretien et différences avec d’autres solutions esthétiques.</p>
+        </div>
+        <div class="latest-aside">
+          <div class="mini-card"><span>Organisation</span><strong>Un sujet précis par article</strong><p>Chaque contenu répondra à une question différente afin d’éviter les répétitions et de garder une lecture claire.</p></div>
+          <div class="mini-card"><span>Navigation</span><strong>Des liens vers les soins correspondants</strong><p>Chaque article permettra de retrouver facilement la page de soin associée lorsque le lecteur souhaite aller plus loin.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-label="Informations éditoriales">
+    <div class="wrap editorial">
+      <div class="editorial-card">
+        <h3>Des contenus pensés pour être compris</h3>
+        <p>Le blog a pour objectif d’expliquer les sujets dentaires avec des mots simples, de distinguer les différentes options et d’aider à préparer les bonnes questions avant une consultation.</p>
+        <a href="/#cabinet">Découvrir le cabinet →</a>
+      </div>
+      <div class="editorial-card dark">
+        <h3>Une question sur votre situation ?</h3>
+        <p>Un article donne des informations générales. Le diagnostic et le choix d’un traitement dépendent toujours de votre situation clinique.</p>
+        <a href="/#rdv">Prendre rendez-vous →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-block" aria-labelledby="cta-title">
+    <div class="cta-inner">
+      <div class="cta-copy">
+        <span class="kicker">Centre Dentaire Venezuela · Tanger</span>
+        <h2 id="cta-title">Besoin d’un avis pour votre sourire ?</h2>
+        <p>Contactez le cabinet pour organiser une consultation et discuter de vos besoins avec l’équipe.</p>
+      </div>
+      <div class="cta-actions">
+        <a class="btn btn-light" href="/#rdv">Prendre rendez-vous</a>
+        <a class="btn btn-outline" href="https://wa.me/212771158018" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+    </div>
+  </section>
 </main>
-<footer class="foot"><div class="wrap"><p>Centre Dentaire Venezuela · Tanger</p><a href="/">Retour à l’accueil</a></div></footer>
+
+<footer class="foot">
+  <div class="wrap foot-grid">
+    <div><a class="foot-brand" href="/">Centre Dentaire<span>Venezuela</span></a><p>Cabinet dentaire à Tanger. Une prise en charge attentive, des explications claires et un plan de traitement adapté à chaque patient.</p></div>
+    <div><div class="foot-head">Navigation</div><div class="foot-links"><a href="/">Accueil</a><a href="/#cabinet">Le cabinet</a><a href="/#soins">Nos soins</a><a href="/blog/">Blog</a><a href="/#rdv">Prendre rendez-vous</a></div></div>
+    <div><div class="foot-head">Contact</div><div class="foot-links"><a href="tel:+212531112127">+212 5 31 11 21 27</a><a href="https://wa.me/212771158018" target="_blank" rel="noopener">WhatsApp</a><a href="mailto:centredentairevenezuela@gmail.com">Email</a><a href="https://share.google/NQdfjEYv9MC4431Lz" target="_blank" rel="noopener">Google Maps</a></div></div>
+  </div>
+  <div class="signature">© 2026 Centre Dentaire Venezuela · Tanger, Maroc</div>
+</footer>
 </body>
 </html>
