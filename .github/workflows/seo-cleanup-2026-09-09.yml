@@ -1,0 +1,24 @@
+name: SEO cleanup 2026-09-09
+
+on:
+  push:
+    paths:
+      - '.github/scripts/seo_cleanup_2026_09_09.py'
+      - '.github/workflows/seo-cleanup-2026-09-09.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 .github/scripts/seo_cleanup_2026_09_09.py
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet && exit 0
+          git commit -m "Clean up SEO architecture and internal linking"
+          git push
