@@ -5,7 +5,7 @@
 - Avertissements : **0**
 
 ## Erreurs
-- index.html: image sans alt: 
+- index.html: image sans alt: TAG=<img>
 
 ## Inventaire
 | Page | Title chars | Meta chars | Mots | Indexable |
