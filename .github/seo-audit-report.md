@@ -1,12 +1,11 @@
 # Audit SEO technique complet
 
 - Fichiers HTML analysés : **10**
-- Erreurs bloquantes / techniques : **2**
+- Erreurs bloquantes / techniques : **1**
 - Avertissements : **0**
 
 ## Erreurs
 - index.html: image sans alt: 
-- index.html: twitter:card absent
 
 ## Inventaire
 | Page | Title chars | Meta chars | Mots | Indexable |
@@ -16,7 +15,7 @@
 | `dentisterie-esthetique-tanger/index.html` | 59 | 130 | 918 | oui |
 | `endodontie-tanger/index.html` | 41 | 124 | 891 | oui |
 | `implant-dentaire-tanger/index.html` | 53 | 149 | 1277 | oui |
-| `index.html` | 45 | 177 | 1979 | oui |
+| `index.html` | 45 | 177 | 1978 | oui |
 | `merci.html` | 51 | 128 | 80 | non |
 | `orthodontie-tanger/index.html` | 52 | 120 | 830 | oui |
 | `parodontologie-tanger/index.html` | 44 | 128 | 790 | oui |
