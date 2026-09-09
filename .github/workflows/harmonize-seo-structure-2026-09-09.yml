@@ -1,0 +1,31 @@
+name: Harmonize SEO structure 2026-09-09
+
+on:
+  push:
+    paths:
+      - '.github/scripts/harmonize_seo_structure_2026_09_09.py'
+      - '.github/workflows/harmonize-seo-structure-2026-09-09.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Apply SEO structure harmonization
+        run: python .github/scripts/harmonize_seo_structure_2026_09_09.py
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add soins-dentaires-tanger/index.html chirurgie-dentaire-tanger/index.html dentisterie-esthetique-tanger/index.html endodontie-tanger/index.html parodontologie-tanger/index.html orthodontie-tanger/index.html implant-dentaire-tanger/index.html
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          git commit -m "Harmonize service SEO structure"
+          git push origin HEAD:main
