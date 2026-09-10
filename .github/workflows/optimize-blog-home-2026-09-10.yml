@@ -1,0 +1,43 @@
+name: Optimize blog homepage 2026-09-10
+on:
+  push:
+    paths:
+      - '.github/workflows/optimize-blog-home-2026-09-10.yml'
+permissions:
+  contents: write
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Optimize blog homepage SEO content
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('blog/index.html')
+          s=p.read_text(encoding='utf-8')
+          s=s.replace('<h1>Conseils dentaires</h1><p>Des réponses simples et documentées aux questions que l’on se pose avant, pendant ou après un soin dentaire à Tanger.</p>', '<h1>Blog dentaire à Tanger : conseils et informations</h1><p>Le blog du Centre Dentaire Venezuela rassemble des contenus clairs et documentés sur les questions que les patients se posent avant, pendant ou après un soin dentaire à Tanger. Blanchiment dentaire, implants, orthodontie, santé des gencives, traitement de canal, chirurgie orale ou soins courants : chaque article aide à mieux comprendre les options disponibles, les étapes d’un traitement et les points à discuter lors d’une consultation.</p>')
+          css='''\n.blog-guide{padding:12px 0 72px}\n.blog-guide .guide-box{padding:30px;border-radius:22px;background:#f4f8f7;border:1px solid var(--line)}\n.blog-guide h2{margin:0 0 14px;font-size:clamp(28px,3.2vw,40px);font-weight:400;line-height:1.15;color:var(--ink)}\n.blog-guide p{margin:0 0 16px;font-size:14.5px;line-height:1.75;color:var(--muted)}\n.blog-guide p:last-of-type{margin-bottom:0}\n.topic-links{display:flex;flex-wrap:wrap;gap:9px;margin-top:22px}\n.topic-links a{display:inline-flex;padding:9px 12px;border-radius:999px;background:#fff;border:1px solid var(--line);font-size:11.5px;font-weight:700;color:var(--deep)}\n@media(max-width:620px){.blog-guide{padding-bottom:52px}.blog-guide .guide-box{padding:24px}}\n'''
+          if '.blog-guide{' not in s:
+              s=s.replace('</style>',css+'\n</style>',1)
+          block='''\n<section class="wrap blog-guide" aria-labelledby="guide-blog-title"><div class="guide-box"><h2 id="guide-blog-title">Conseils dentaires par thématique</h2><p>Notre objectif est de répondre aux questions concrètes des patients sans remplacer l’examen clinique. Les articles expliquent les indications, les limites, les suites possibles et les éléments à vérifier avant de choisir un soin. Lorsqu’un sujet médical l’exige, nous privilégions des recommandations institutionnelles et des publications scientifiques récentes.</p><p>Vous pouvez explorer les contenus par domaine ou consulter directement nos pages de soins à Tanger. Pour l’esthétique du sourire, la rubrique dédiée au <a href="/blanchiment-dentaire-tanger/">blanchiment dentaire à Tanger</a> complète nos articles d’information avec le bilan préalable, le déroulement et les questions fréquentes. Les autres thématiques sont reliées aux pages correspondantes afin de faciliter la navigation entre information et prise en charge.</p><div class="topic-links"><a href="/soins-dentaires-tanger/">Soins dentaires</a><a href="/chirurgie-dentaire-tanger/">Chirurgie dentaire</a><a href="/dentisterie-esthetique-tanger/">Dentisterie esthétique</a><a href="/implant-dentaire-tanger/">Implantologie</a><a href="/endodontie-tanger/">Endodontie</a><a href="/parodontologie-tanger/">Parodontologie</a><a href="/orthodontie-tanger/">Orthodontie</a></div></div></section>\n'''
+          if 'id="guide-blog-title"' not in s:
+              marker='<section class="site-faq"'
+              if marker in s:
+                  s=s.replace(marker,block+marker,1)
+              else:
+                  s=s.replace('</main>',block+'</main>',1)
+          # basic checks
+          assert '<h1>Blog dentaire à Tanger : conseils et informations</h1>' in s
+          assert 'id="guide-blog-title"' in s
+          assert '/blanchiment-dentaire-tanger/' in s
+          assert 'yg1s5pek4f' in s
+          p.write_text(s,encoding='utf-8')
+          print('Blog homepage optimized successfully.')
+          PY
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add blog/index.html
+          git diff --cached --quiet || (git commit -m "Strengthen blog homepage SEO content" && git push)
