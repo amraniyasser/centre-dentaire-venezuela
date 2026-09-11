@@ -286,3 +286,12 @@ Même footer que celui de l'Accueil sur toutes les pages, avec les mêmes élém
 - Paddings latéraux mobile (`max-width: 640px`) : `padding: 20px`
 
 (Valeurs reprises du brief précédent, éprouvées — à ajuster librement si une maquette différente est validée.)
+
+## Footer canonique — règle obligatoire
+- Toute nouvelle page HTML doit reprendre exactement le footer canonique déjà présent sur les pages du site.
+- Ne pas créer de variante de footer par page.
+- Le footer doit toujours afficher le téléphone du cabinet puis le WhatsApp +212 771 158 018 juste en dessous.
+- Réseaux obligatoires : Instagram, TikTok et Google Maps.
+- Liens obligatoires : Mentions légales, Politique de confidentialité et prise de rendez-vous.
+- Le footer doit rester compact : pas d'espace vertical excessif au-dessus ou sous son contenu.
+
