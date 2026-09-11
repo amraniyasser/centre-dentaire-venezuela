@@ -1,6 +1,7 @@
 from pathlib import Path
 import re
 
+# Canonical header rollout script.
 repo=Path('.')
 home=(repo/'index.html').read_text(encoding='utf-8')
 m=re.search(r'(<header>\s*<nav class="nav" aria-label="Navigation principale">.*?</nav>\s*</header>)', home, flags=re.S)
