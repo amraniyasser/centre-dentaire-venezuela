@@ -18,9 +18,7 @@ jobs:
         run: |
           python3 - <<'PY'
           from pathlib import Path
-          import re
 
-          # 1) Current blog article: visible medical approval + reviewedBy schema.
           p = Path('blog/blanchiment-dentaire-guide/index.html')
           s = p.read_text(encoding='utf-8')
           if 'Validé médicalement par' not in s:
@@ -31,15 +29,12 @@ jobs:
               s = s.replace('"publisher":{"@id":"https://centredentairevenezuela.com/#dentist"},"image"', '"publisher":{"@id":"https://centredentairevenezuela.com/#dentist"},"reviewedBy":{"@id":"https://centredentairevenezuela.com/dr-majda-laasraoui-dentiste-tanger/#person"},"image"', 1)
           p.write_text(s, encoding='utf-8')
 
-          # 2) Editorial rule for every future blog article.
           p = Path('.github/project-docs/seo-content-rules.md')
           s = p.read_text(encoding='utf-8')
           if '## Validation médicale obligatoire des articles' not in s:
               s += '''\n\n## Validation médicale obligatoire des articles\n\n- Tout article de blog publié doit afficher visiblement : **« Validé médicalement par Dr Majda Laasraoui, chirurgienne-dentiste à Tanger »**, avec un lien vers `/dr-majda-laasraoui-dentiste-tanger/`.\n- Le balisage `Article` doit inclure `reviewedBy` vers l’entité `https://centredentairevenezuela.com/dr-majda-laasraoui-dentiste-tanger/#person`.\n- Cette validation doit correspondre à une relecture réelle avant publication. Un brouillon non relu ne doit pas être publié avec cette mention.\n- L’auteur éditorial peut rester le Centre Dentaire Venezuela ; la validation médicale est portée séparément par `reviewedBy`.\n'''
           p.write_text(s, encoding='utf-8')
 
-          # 3) Separate intent ownership: aesthetic page = broad smile/restorative aesthetics,
-          # whitening page = dedicated whitening intent.
           p = Path('dentisterie-esthetique-tanger/index.html')
           s = p.read_text(encoding='utf-8')
           replacements = {
@@ -53,15 +48,14 @@ jobs:
               s = s.replace(a,b)
           p.write_text(s, encoding='utf-8')
 
-          # 4) Homepage structured data: do not make the broad aesthetics entity compete for whitening.
           p = Path('index.html')
           s = p.read_text(encoding='utf-8')
           s = s.replace('"name":"Dentisterie esthétique : blanchiment et facettes"', '"name":"Dentisterie esthétique : facettes, couronnes et harmonie du sourire"')
           p.write_text(s, encoding='utf-8')
+          PY
 
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add blog/blanchiment-dentaire-guide/index.html .github/project-docs/seo-content-rules.md dentisterie-esthetique-tanger/index.html index.html
           git commit -m 'Add medical review rule and separate aesthetic whitening intent' || exit 0
           git push
-          PY
