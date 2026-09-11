@@ -1,0 +1,29 @@
+name: Add TikTok visible
+on: [push]
+permissions:
+  contents: write
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Add TikTok beside Instagram
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('index.html')
+          s=p.read_text(encoding='utf-8')
+          marker='''            <a class="footer-social footer-social--google" href="https://maps.app.goo.gl/6SJrWgcmshbDhSLH7" target="_blank" rel="noopener" aria-label="Fiche Google du Centre Dentaire Venezuela">'''
+          tiktok='''            <a class="footer-social" href="https://www.tiktok.com/@centredentairevenezuela" target="_blank" rel="noopener" aria-label="TikTok du Centre Dentaire Venezuela">\n              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.3 3.2c.5 2.2 1.8 3.6 4.1 4.1v3.2c-1.6 0-3-.5-4.1-1.3v5.8c0 3.7-2.5 6.2-6 6.2-3.2 0-5.7-2.4-5.7-5.5 0-3.4 2.7-5.8 6.2-5.8.4 0 .8 0 1.2.1v3.3c-.4-.1-.7-.2-1.1-.2-1.7 0-2.9 1-2.9 2.6 0 1.4 1.1 2.5 2.5 2.5 1.8 0 2.7-1.2 2.7-3.2V3.2h3.1z"/></svg>\n            </a>\n'''
+          if 'aria-label="TikTok du Centre Dentaire Venezuela"' not in s:
+              if marker not in s:
+                  raise SystemExit('footer marker missing')
+              s=s.replace(marker,tiktok+marker,1)
+          s=s.replace('"sameAs":["https://www.instagram.com/centre.dentaire.venezuela/","https://maps.app.goo.gl/6SJrWgcmshbDhSLH7"]','"sameAs":["https://www.instagram.com/centre.dentaire.venezuela/","https://www.tiktok.com/@centredentairevenezuela","https://maps.app.goo.gl/6SJrWgcmshbDhSLH7"]',1)
+          p.write_text(s,encoding='utf-8')
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html
+          git commit -m 'Add visible TikTok beside Instagram' || exit 0
+          git push
