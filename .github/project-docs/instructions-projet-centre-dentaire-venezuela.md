@@ -295,3 +295,9 @@ Même footer que celui de l'Accueil sur toutes les pages, avec les mêmes élém
 - Liens obligatoires : Mentions légales, Politique de confidentialité et prise de rendez-vous.
 - Le footer doit rester compact : pas d'espace vertical excessif au-dessus ou sous son contenu.
 
+## Header canonique — règle obligatoire
+- Toute nouvelle page HTML doit reprendre le même header/navbar que la homepage.
+- Même design, même ordre de navigation, même menu mobile et même bouton de rendez-vous.
+- Sur les pages internes, les ancres Cabinet / Transformations / Localisation / RDV doivent renvoyer vers les sections correspondantes de la homepage avec des URLs `/#...`.
+- Ne jamais créer une variante de header pour une page de soin, blog, praticienne ou page légale.
+
