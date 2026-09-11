@@ -15,7 +15,7 @@ inner=inner.replace(' aria-current="page"','')
 
 css='''<style id="cv-header-styles">
 :root{--cv-nav-h:68px;--cv-gutter:4.6%;--cv-ink:#143b3e;--cv-teal:#8abdb8;--cv-teal-soft:#8fb5b1;--cv-teal-deep:#2f6d6b;--cv-btn:#8fbdb6;--cv-link:#3c5c5c;--cv-white:#fff}
-body>header:has(>.nav){position:sticky;top:0;z-index:100}
+header:has(>.nav){position:sticky;top:0;z-index:100}
 .nav{position:relative;height:var(--cv-nav-h);display:flex;align-items:center;justify-content:space-between;gap:28px;padding:0 var(--cv-gutter);background:rgba(255,255,255,.96);transition:background .3s,box-shadow .3s,backdrop-filter .3s;font-family:"Avenir Next","Helvetica Neue",Arial,sans-serif}
 .nav.is-scrolled{background:rgba(255,255,255,.62);backdrop-filter:blur(14px) saturate(1.4);box-shadow:0 1px 0 rgba(20,59,62,.08)}
 .nav a{text-decoration:none}.nav-right{display:flex;align-items:center;gap:12px}
