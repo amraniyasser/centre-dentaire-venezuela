@@ -65,9 +65,10 @@
 @media(max-width:900px){.cv-footer__inner{grid-template-columns:1fr 1fr}.cv-footer__right{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr}}
 @media(max-width:640px){.cv-footer__inner{padding:24px 20px 20px;grid-template-columns:1fr;gap:24px}.cv-footer__right{grid-column:auto;display:flex}.cv-footer__links{grid-template-columns:1fr 1fr}.cv-footer__bottom{padding:11px 20px;align-items:flex-start;flex-direction:column;gap:7px}}
 </style>
+
 <style id="cv-header-styles">
 :root{--cv-nav-h:68px;--cv-gutter:4.6%;--cv-ink:#143b3e;--cv-teal:#8abdb8;--cv-teal-soft:#8fb5b1;--cv-teal-deep:#2f6d6b;--cv-btn:#8fbdb6;--cv-link:#3c5c5c;--cv-white:#fff}
-body>header:has(>.nav){position:sticky;top:0;z-index:100}
+header:has(>.nav){position:sticky;top:0;z-index:100}
 .nav{position:relative;height:var(--cv-nav-h);display:flex;align-items:center;justify-content:space-between;gap:28px;padding:0 var(--cv-gutter);background:rgba(255,255,255,.96);transition:background .3s,box-shadow .3s,backdrop-filter .3s;font-family:"Avenir Next","Helvetica Neue",Arial,sans-serif}
 .nav.is-scrolled{background:rgba(255,255,255,.62);backdrop-filter:blur(14px) saturate(1.4);box-shadow:0 1px 0 rgba(20,59,62,.08)}
 .nav a{text-decoration:none}.nav-right{display:flex;align-items:center;gap:12px}
@@ -177,5 +178,6 @@ body>header:has(>.nav){position:sticky;top:0;z-index:100}
   </div>
 </footer>
 <script>const filters=[...document.querySelectorAll('.filter')],cards=[...document.querySelectorAll('.card')],empty=document.getElementById('empty-state');filters.forEach(btn=>btn.addEventListener('click',()=>{filters.forEach(b=>b.classList.remove('active'));btn.classList.add('active');const f=btn.dataset.filter;let visible=0;cards.forEach(card=>{const show=f==='all'||card.dataset.category===f;card.classList.toggle('is-hidden',!show);if(show)visible++});empty.classList.toggle('show',visible===0)}));</script>
+
 <script id="cv-header-script">(function(){var nav=document.querySelector('.nav');if(!nav)return;function sync(){nav.classList.toggle('is-scrolled',window.scrollY>8)}sync();window.addEventListener('scroll',sync,{passive:true});var menu=nav.querySelector('.nav-menu');if(menu){document.addEventListener('pointerdown',function(e){if(menu.open&&!menu.contains(e.target))menu.open=false});menu.addEventListener('click',function(e){if(e.target.closest('.nav-panel a'))menu.open=false})}})();</script>
 </body></html>
