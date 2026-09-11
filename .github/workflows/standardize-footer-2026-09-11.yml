@@ -1,9 +1,10 @@
-name: Standardize compact footer
+name: Enforce canonical footer
 
 on:
   push:
     paths:
-      - '.github/workflows/standardize-footer-2026-09-11.yml'
+      - '**/*.html'
+      - '.github/scripts/standardize_footer.py'
 
 permissions:
   contents: write
@@ -13,12 +14,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Apply canonical footer
+      - name: Apply canonical footer to every HTML page
         run: python3 .github/scripts/standardize_footer.py
-      - name: Commit changes
+      - name: Commit footer normalization when needed
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add -A
-          git commit -m 'Standardize compact footer site-wide with WhatsApp' || exit 0
+          git commit -m 'Keep canonical footer consistent site-wide' || exit 0
           git push
