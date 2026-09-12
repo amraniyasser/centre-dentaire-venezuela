@@ -34,3 +34,20 @@ header:has(>.nav){position:sticky;top:0;z-index:100}
 .cv-footer__bottom-links{display:flex;gap:14px;flex-wrap:wrap}.cv-footer__bottom-links a:hover{color:#fff}.cv-footer__credit{color:#e5bd8c;font-weight:600}
 @media(max-width:900px){.cv-footer__inner{grid-template-columns:1fr 1fr}.cv-footer__right{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr}}
 @media(max-width:640px){.cv-footer__inner{padding:24px 20px 20px;grid-template-columns:1fr;gap:24px}.cv-footer__right{grid-column:auto;display:flex}.cv-footer__links{grid-template-columns:1fr 1fr}.cv-footer__bottom{padding:11px 20px;align-items:flex-start;flex-direction:column;gap:7px}}
+
+/* Blog article components — canonical FAQ + summary */
+.blog-summary{margin:34px 0;padding:24px 26px;border-radius:18px;background:#f2f7f6;border:1px solid rgba(20,59,62,.11)}
+.blog-summary b{display:block;margin-bottom:8px;color:#143b3e}
+.blog-summary p{margin:0;color:#617b7a;font-size:16px;line-height:1.82}
+.site-faq{padding:72px 20px;background:#f2f7f6}
+.site-faq .faq-inner{max-width:980px;margin:0 auto}
+.site-faq .faq-kicker{display:block;margin-bottom:12px;font-size:10.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#8fb5b1}
+.site-faq h2{margin:0 0 26px;font-size:clamp(30px,4vw,46px);font-weight:300;line-height:1.1;color:#143b3e}
+.site-faq details{border-top:1px solid rgba(20,59,62,.11)}
+.site-faq details:last-child{border-bottom:1px solid rgba(20,59,62,.11)}
+.site-faq summary{cursor:pointer;list-style:none;padding:21px 38px 21px 0;font-size:16px;font-weight:600;color:#143b3e;position:relative}
+.site-faq summary::-webkit-details-marker{display:none}
+.site-faq summary:after{content:"+";position:absolute;right:4px;top:17px;font-size:24px;font-weight:300;color:#2f6d6b}
+.site-faq details[open] summary:after{content:"–"}
+.site-faq details p{margin:-3px 0 22px;max-width:820px;font-size:14.5px;line-height:1.72;color:#5d7d7c}
+@media(max-width:680px){.site-faq{padding:52px 20px}.site-faq summary{font-size:15px}}

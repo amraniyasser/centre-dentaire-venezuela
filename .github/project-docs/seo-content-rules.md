@@ -16,3 +16,11 @@
 - Le balisage `Article` doit inclure `reviewedBy` vers l’entité `https://centredentairevenezuela.com/dr-majda-laasraoui-dentiste-tanger/#person`.
 - Cette validation doit correspondre à une relecture réelle avant publication. Un brouillon non relu ne doit pas être publié avec cette mention.
 - L’auteur éditorial peut rester le Centre Dentaire Venezuela ; la validation médicale est portée séparément par `reviewedBy`.
+
+## Format visuel canonique des articles de blog
+
+- Tous les articles de blog doivent utiliser exactement le même composant FAQ visible : `section.site-faq` > `.faq-inner` > `.faq-kicker` + `h2` + `details`. Le contenu des questions reste spécifique au sujet, mais le format visuel ne varie pas d’un article à l’autre.
+- Le style de la FAQ est centralisé dans `/assets/css/site-shell.css`. Ne pas recopier les règles `.site-faq` dans le `<style>` d’un article.
+- Tous les articles de blog doivent comporter un bloc **« En bref »** visible après l’introduction et avant le développement principal.
+- Le bloc « En bref » utilise le composant partagé `.blog-summary` ; il résume l’article en quelques phrases utiles, sans bourrage de mots-clés ni promesse médicale ou commerciale non vérifiée.
+- Le contenu du bloc « En bref » doit rester cohérent avec les sources et conclusions de l’article.
