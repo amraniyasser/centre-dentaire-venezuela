@@ -18,18 +18,13 @@ jobs:
 
           p = Path('blog/flash-opalescence-philips-zoom-blanchiment/index.html')
           s = p.read_text(encoding='utf-8')
-
-          # Find the current FAQ block on the second article, regardless of whether
-          # it already uses the generic .faq or partially uses .site-faq.
           m = re.search(r'<section class="(?:faq|site-faq)"[^>]*>.*?</section>', s, re.S)
           if not m:
               raise SystemExit('FAQ section not found')
-
           old = m.group(0)
           details = re.findall(r'<details>.*?</details>', old, re.S)
           if not details:
               raise SystemExit('FAQ questions not found')
-
           new = (
               '<section class="site-faq" data-site-faq="true" aria-labelledby="faq-marques-blanchiment-title">'
               '<div class="faq-inner">'
@@ -38,7 +33,6 @@ jobs:
               + ''.join(details) +
               '</div></section>'
           )
-
           s = s[:m.start()] + new + s[m.end():]
           p.write_text(s, encoding='utf-8')
           PY
