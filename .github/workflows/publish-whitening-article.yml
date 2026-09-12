@@ -1,0 +1,76 @@
+name: Publish whitening article
+on:
+  push:
+    paths:
+      - '.github/workflows/publish-whitening-article.yml'
+permissions:
+  contents: write
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Update blog, sitemap and internal links
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import json
+
+          url='/blog/flash-opalescence-philips-zoom-blanchiment/'
+
+          # Blog listing
+          p=Path('blog/index.html'); s=p.read_text(encoding='utf-8')
+          if url not in s:
+              card='''<article class="card" data-category="esthetique"><a href="/blog/flash-opalescence-philips-zoom-blanchiment/"><div class="cover"><span class="tag">Esthétique</span><span class="scribble"></span><p class="cover-title">fläsh, Opalescence ou Philips Zoom : quelles différences ?</p></div><div class="meta">12 sept. 2026</div><h2>Blanchiment professionnel : fläsh, Opalescence ou Philips Zoom ?</h2></a></article>'''
+              s=s.replace('<div class="grid" id="article-grid">','<div class="grid" id="article-grid">'+card,1)
+              p.write_text(s,encoding='utf-8')
+
+          # Sitemap
+          p=Path('sitemap.xml'); s=p.read_text(encoding='utf-8')
+          full='https://centredentairevenezuela.com/blog/flash-opalescence-philips-zoom-blanchiment/'
+          if full not in s:
+              row='  <url><loc>'+full+'</loc><lastmod>2026-09-12</lastmod></url>\n'
+              s=s.replace('</urlset>',row+'</urlset>')
+              p.write_text(s,encoding='utf-8')
+
+          # Strong contextual link from the whitening landing page
+          p=Path('blanchiment-dentaire-tanger/index.html'); s=p.read_text(encoding='utf-8')
+          if url not in s:
+              block='''\n<section class="section alt"><div class="inner"><div class="section-head"><span class="kicker">Comparer les protocoles</span><h2>fläsh, Opalescence ou Philips Zoom ?</h2><p class="lead">Nous avons comparé les informations officielles des fabricants pour expliquer les différences entre ces systèmes de blanchiment professionnel : activation avec ou sans lampe, protocole et points à connaître avant le traitement.</p></div><div class="related"><a href="/blog/flash-opalescence-philips-zoom-blanchiment/">Lire le comparatif fläsh, Opalescence et Philips Zoom</a></div></div></section>\n'''
+              s=s.replace('</main>',block+'</main>',1)
+              p.write_text(s,encoding='utf-8')
+
+          # Contextual link from Dr Majda entity page
+          p=Path('dr-majda-laasraoui-dentiste-tanger/index.html'); s=p.read_text(encoding='utf-8')
+          if url not in s:
+              block='''\n<section class="section alt"><div class="inner"><span class="kicker">Conseils et informations</span><h2>Comprendre les systèmes de <span class="accent">blanchiment professionnel</span></h2><p class="lead">Le blog du Centre Dentaire Venezuela compare les protocoles à partir de leurs sources officielles. À lire : <a href="/blog/flash-opalescence-philips-zoom-blanchiment/" style="color:#2f6d6b;text-decoration:underline;text-underline-offset:3px">fläsh, Opalescence ou Philips Zoom : quelles différences ?</a></p></div></section>\n'''
+              s=s.replace('</main>',block+'</main>',1)
+              p.write_text(s,encoding='utf-8')
+
+          # Article structured data + social image
+          p=Path('blog/flash-opalescence-philips-zoom-blanchiment/index.html'); s=p.read_text(encoding='utf-8')
+          if 'property="og:image"' not in s:
+              s=s.replace('<meta name="twitter:card" content="summary_large_image">','<meta property="og:image" content="https://www.whitesmile.com/wp-content/uploads/2025/03/powerwhitening_whitesmile-1024x668.webp"><meta name="twitter:card" content="summary_large_image">',1)
+          if '"@type":"Article"' not in s:
+              data={"@context":"https://schema.org","@graph":[{"@type":"Article","headline":"fläsh, Opalescence ou Philips Zoom : quelles différences pour un blanchiment dentaire ?","description":"Comparatif documenté des systèmes de blanchiment professionnel fläsh/WHITEsmile, Opalescence Pro et Philips Zoom WhiteSpeed.","datePublished":"2026-09-12","dateModified":"2026-09-12","mainEntityOfPage":"https://centredentairevenezuela.com/blog/flash-opalescence-philips-zoom-blanchiment/","author":{"@type":"Organization","name":"Centre Dentaire Venezuela","url":"https://centredentairevenezuela.com/"},"publisher":{"@id":"https://centredentairevenezuela.com/#dentist"},"about":[{"@type":"Thing","name":"Blanchiment dentaire"},{"@type":"Brand","name":"fläsh"},{"@type":"Brand","name":"Opalescence"},{"@type":"Brand","name":"Philips Zoom"}],"citation":["https://www.whitesmile.com/company/","https://www.whitesmile.com/power-whitening/","https://www.whitesmile.com/light-whitening/","https://www.ultradent.com/products/categories/whitening/in-office/opalescence-pro","https://www.usa.philips.com/professionals/dental/whitening/in-office-whitening"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://centredentairevenezuela.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://centredentairevenezuela.com/blog/"},{"@type":"ListItem","position":3,"name":"fläsh, Opalescence ou Philips Zoom","item":"https://centredentairevenezuela.com/blog/flash-opalescence-philips-zoom-blanchiment/"}]},{"@type":"Person","@id":"https://centredentairevenezuela.com/dr-majda-laasraoui-dentiste-tanger/#person","name":"Dr Majda Laasraoui","jobTitle":"Chirurgienne-dentiste","url":"https://centredentairevenezuela.com/dr-majda-laasraoui-dentiste-tanger/","worksFor":{"@id":"https://centredentairevenezuela.com/#dentist"}},{"@type":"Dentist","@id":"https://centredentairevenezuela.com/#dentist","name":"Centre Dentaire Venezuela","url":"https://centredentairevenezuela.com/","telephone":"+212531112127","employee":{"@id":"https://centredentairevenezuela.com/dr-majda-laasraoui-dentiste-tanger/#person"}}]}
+              schema='<script type="application/ld+json">'+json.dumps(data,ensure_ascii=False,separators=(',',':'))+'</script>'
+              s=s.replace('</head>',schema+'</head>',1)
+          p.write_text(s,encoding='utf-8')
+
+          # Basic publication checks
+          assert url in Path('blog/index.html').read_text(encoding='utf-8')
+          assert 'https://centredentairevenezuela.com'+url in Path('sitemap.xml').read_text(encoding='utf-8')
+          assert url in Path('blanchiment-dentaire-tanger/index.html').read_text(encoding='utf-8')
+          assert url in Path('dr-majda-laasraoui-dentiste-tanger/index.html').read_text(encoding='utf-8')
+          article=Path('blog/flash-opalescence-philips-zoom-blanchiment/index.html').read_text(encoding='utf-8')
+          assert '<link rel="canonical"' in article and 'application/ld+json' in article
+          assert article.count('class="cv-footer"')==1
+          PY
+      - name: Remove one-time workflow and commit
+        run: |
+          rm .github/workflows/publish-whitening-article.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'Publish fläsh Opalescence Philips Zoom article'
+          git push
