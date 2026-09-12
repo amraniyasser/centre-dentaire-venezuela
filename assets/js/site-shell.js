@@ -1,0 +1,2 @@
+/* Centre Dentaire Venezuela — shared site shell behavior */
+(function(){var nav=document.querySelector('.nav');if(!nav)return;function sync(){nav.classList.toggle('is-scrolled',window.scrollY>8)}sync();window.addEventListener('scroll',sync,{passive:true});var menu=nav.querySelector('.nav-menu');if(menu){document.addEventListener('pointerdown',function(e){if(menu.open&&!menu.contains(e.target))menu.open=false});menu.addEventListener('click',function(e){if(e.target.closest('.nav-panel a'))menu.open=false})}})();
