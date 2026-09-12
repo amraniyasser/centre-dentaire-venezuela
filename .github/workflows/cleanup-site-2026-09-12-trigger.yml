@@ -1,0 +1,24 @@
+name: Cleanup site structure trigger
+
+on:
+  push:
+    paths:
+      - '.github/workflows/cleanup-site-2026-09-12-trigger.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Clean duplicated shell code and organize shared assets
+        run: python3 .github/scripts/cleanup_site_2026_09_12.py
+      - name: Commit cleanup
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'Clean duplicated shell code and organize shared assets'
+          git push
