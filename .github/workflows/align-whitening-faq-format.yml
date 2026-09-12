@@ -1,0 +1,51 @@
+name: Align whitening FAQ format
+on:
+  push:
+    paths:
+      - '.github/workflows/align-whitening-faq-format.yml'
+permissions:
+  contents: write
+jobs:
+  align:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Align FAQ to first article component
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          p = Path('blog/flash-opalescence-philips-zoom-blanchiment/index.html')
+          s = p.read_text(encoding='utf-8')
+
+          # Find the current FAQ block on the second article, regardless of whether
+          # it already uses the generic .faq or partially uses .site-faq.
+          m = re.search(r'<section class="(?:faq|site-faq)"[^>]*>.*?</section>', s, re.S)
+          if not m:
+              raise SystemExit('FAQ section not found')
+
+          old = m.group(0)
+          details = re.findall(r'<details>.*?</details>', old, re.S)
+          if not details:
+              raise SystemExit('FAQ questions not found')
+
+          new = (
+              '<section class="site-faq" data-site-faq="true" aria-labelledby="faq-marques-blanchiment-title">'
+              '<div class="faq-inner">'
+              '<span class="faq-kicker">Questions fréquentes</span>'
+              '<h2 id="faq-marques-blanchiment-title">Questions sur Zoom, fläsh et Opalescence</h2>'
+              + ''.join(details) +
+              '</div></section>'
+          )
+
+          s = s[:m.start()] + new + s[m.end():]
+          p.write_text(s, encoding='utf-8')
+          PY
+      - name: Commit change
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add blog/flash-opalescence-philips-zoom-blanchiment/index.html
+          git commit -m 'Match whitening article FAQ to blog template'
+          git push
