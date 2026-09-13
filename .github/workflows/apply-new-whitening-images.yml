@@ -36,3 +36,5 @@ jobs:
           git rm .github/apply-new-whitening-images.py .github/tmp-before-b64.txt .github/tmp-after-b64.txt .github/tmp-after-a.txt .github/tmp-after-b.txt .github/workflows/apply-new-whitening-images.yml
           git commit -m 'Replace wedding whitening before-after with Dr Majda clinical case'
           git push
+
+# retry: 2
