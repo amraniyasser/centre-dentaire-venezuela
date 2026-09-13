@@ -1,0 +1,38 @@
+name: Strengthen wedding article sources once
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/strengthen-wedding-sources-once.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  strengthen-wedding-sources:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Apply evidence upgrade
+        run: python .github/strengthen-wedding-sources.py
+
+      - name: Validate article
+        run: |
+          grep -q '40485133' blog/blanchiment-dentaire-avant-mariage/index.html
+          grep -q '38668030' blog/blanchiment-dentaire-avant-mariage/index.html
+          grep -q 'Sources scientifiques PubMed' blog/blanchiment-dentaire-avant-mariage/index.html
+          grep -q 'Contexte mariage' blog/blanchiment-dentaire-avant-mariage/index.html
+
+      - name: Commit and clean temporary workflow
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add blog/blanchiment-dentaire-avant-mariage/index.html
+          git rm .github/strengthen-wedding-sources.py .github/workflows/strengthen-wedding-sources-once.yml
+          git commit -m 'Strengthen wedding whitening article with PubMed evidence'
+          git push
