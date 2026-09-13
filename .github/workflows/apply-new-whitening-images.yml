@@ -1,0 +1,38 @@
+name: Apply new whitening clinical images once
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/apply-new-whitening-images.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  update-whitening-images:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Apply image and article update
+        run: python .github/apply-new-whitening-images.py
+
+      - name: Validate generated image files
+        run: |
+          test -s assets/images/blog/blanchiment-avant-mariage-avant-dr-majda.webp
+          test -s assets/images/blog/blanchiment-avant-mariage-apres-dr-majda.webp
+          grep -q 'Blanchiment réalisé par' blog/blanchiment-dentaire-avant-mariage/index.html
+          grep -q 'dr-majda-laasraoui-dentiste-tanger' blog/blanchiment-dentaire-avant-mariage/index.html
+
+      - name: Commit final update and remove temporary files
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add blog/blanchiment-dentaire-avant-mariage/index.html assets/images/blog/blanchiment-avant-mariage-avant-dr-majda.webp assets/images/blog/blanchiment-avant-mariage-apres-dr-majda.webp
+          git rm .github/apply-new-whitening-images.py .github/tmp-before-b64.txt .github/tmp-after-b64.txt .github/tmp-after-a.txt .github/tmp-after-b.txt .github/workflows/apply-new-whitening-images.yml
+          git commit -m 'Replace wedding whitening before-after with Dr Majda clinical case'
+          git push
