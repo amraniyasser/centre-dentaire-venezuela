@@ -24,3 +24,14 @@
 - Tous les articles de blog doivent comporter un bloc **« En bref »** visible après l’introduction et avant le développement principal.
 - Le bloc « En bref » utilise le composant partagé `.blog-summary` ; il résume l’article en quelques phrases utiles, sans bourrage de mots-clés ni promesse médicale ou commerciale non vérifiée.
 - Le contenu du bloc « En bref » doit rester cohérent avec les sources et conclusions de l’article.
+
+## Architecture des clusters et intention de recherche
+
+- Une page soin locale reste la page commerciale/transactionnelle principale pour son service.
+- Les articles ciblent des intentions informationnelles distinctes et renvoient vers la page soin correspondante.
+- Quand un article dédié existe, la page soin répond brièvement puis renvoie vers lui au lieu de dupliquer toute la réponse.
+- Éviter plusieurs pages visant exactement la même combinaison service + ville.
+- `/nos-soins/` est le hub des traitements et spécialités ; `/soins-dentaires-tanger/` cible les soins courants.
+- Les articles d’un même cluster peuvent se lier entre eux lorsque le lien est naturel, puis tous renvoient vers la page soin mère.
+- Les entités structurées utilisent les IDs canoniques `/#website`, `/#dentist` et `/dr-majda-laasraoui-dentiste-tanger/#person`.
+
