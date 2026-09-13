@@ -1,0 +1,141 @@
+name: Refine implant blog article
+on:
+  push:
+    paths:
+      - '.github/workflows/refine-implant-blog-article.yml'
+permissions:
+  contents: write
+jobs:
+  refine:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Refine SEO GEO and medical-review metadata
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import json, re
+
+          p = Path('blog/implants-dentaires-2026-7-choses-a-savoir/index.html')
+          s = p.read_text(encoding='utf-8')
+
+          s = s.replace(
+            '<meta name="description" content="Implants dentaires en 2026 : 7 points à connaître sur durée, douleur, cicatrisation, risques, pose immédiate et entretien, avec sources PubMed.">',
+            '<meta name="description" content="Implant dentaire à Tanger en 2026 : 7 points à connaître sur durée, douleur, cicatrisation, risques, pose immédiate et entretien, avec sources PubMed.">'
+          )
+
+          old_intro = '<p class="lead">Vous envisagez un implant dentaire et vous cherchez à comprendre ce qui compte réellement avant le traitement ? Longévité, douleur, cicatrisation, pose immédiate, tabac, entretien : voici sept points utiles à connaître en 2026, à partir de revues systématiques et méta-analyses indexées dans PubMed.</p>'
+          new_intro = '<p class="lead">Si vous envisagez un implant dentaire à Tanger et souhaitez comprendre ce qui compte réellement avant le traitement, ce guide rassemble sept points utiles en 2026 : longévité, douleur, cicatrisation, pose immédiate, tabac, santé des gencives et entretien. Les données médicales citées proviennent uniquement de publications indexées dans PubMed.</p>'
+          s = s.replace(old_intro, new_intro)
+
+          validation = '<p class="evidence" style="margin-top:10px!important"><strong>Validé médicalement par</strong> <a href="/dr-majda-laasraoui-dentiste-tanger/">Dr Majda Laasraoui, chirurgienne-dentiste à Tanger</a>.</p>'
+          meta_anchor = '<div class="meta">Publié le 13 septembre 2026</div>'
+          if validation not in s:
+              s = s.replace(meta_anchor, meta_anchor + validation, 1)
+
+          # Replace JSON-LD with richer, consistent graph.
+          m = re.search(r'<script type="application/ld\+json">(.*?)</script>', s, re.S)
+          if not m:
+              raise RuntimeError('JSON-LD block missing')
+          graph = {
+            "@context":"https://schema.org",
+            "@graph":[
+              {
+                "@type":"Article",
+                "headline":"Implants dentaires en 2026 : 7 choses à savoir",
+                "description":"Guide 2026 sur les implants dentaires : longévité, douleur, cicatrisation, pose immédiate, facteurs de risque et entretien.",
+                "datePublished":"2026-09-13",
+                "dateModified":"2026-09-13",
+                "mainEntityOfPage":"https://centredentairevenezuela.com/blog/implants-dentaires-2026-7-choses-a-savoir/",
+                "author":{"@type":"Organization","name":"Centre Dentaire Venezuela","url":"https://centredentairevenezuela.com/"},
+                "publisher":{"@id":"https://centredentairevenezuela.com/#dentist"},
+                "reviewedBy":{"@id":"https://centredentairevenezuela.com/dr-majda-laasraoui-dentiste-tanger/#person"},
+                "image":"https://upload.wikimedia.org/wikipedia/commons/1/1d/Dental-implant-illustration.jpg",
+                "about":[
+                  {"@type":"Thing","name":"Implant dentaire"},
+                  {"@type":"Thing","name":"Implantologie"},
+                  {"@type":"Thing","name":"Ostéointégration"},
+                  {"@type":"Thing","name":"Péri-implantite"}
+                ],
+                "citation":[
+                  "https://pubmed.ncbi.nlm.nih.gov/42173763/",
+                  "https://pubmed.ncbi.nlm.nih.gov/40489307/",
+                  "https://pubmed.ncbi.nlm.nih.gov/39393606/",
+                  "https://pubmed.ncbi.nlm.nih.gov/40342059/",
+                  "https://pubmed.ncbi.nlm.nih.gov/39351790/",
+                  "https://pubmed.ncbi.nlm.nih.gov/41487703/"
+                ]
+              },
+              {
+                "@type":"BreadcrumbList",
+                "itemListElement":[
+                  {"@type":"ListItem","position":1,"name":"Accueil","item":"https://centredentairevenezuela.com/"},
+                  {"@type":"ListItem","position":2,"name":"Blog","item":"https://centredentairevenezuela.com/blog/"},
+                  {"@type":"ListItem","position":3,"name":"Implants dentaires en 2026 : 7 choses à savoir","item":"https://centredentairevenezuela.com/blog/implants-dentaires-2026-7-choses-a-savoir/"}
+                ]
+              },
+              {
+                "@type":"Person",
+                "@id":"https://centredentairevenezuela.com/dr-majda-laasraoui-dentiste-tanger/#person",
+                "name":"Dr Majda Laasraoui",
+                "jobTitle":"Chirurgienne-dentiste",
+                "url":"https://centredentairevenezuela.com/dr-majda-laasraoui-dentiste-tanger/",
+                "worksFor":{"@id":"https://centredentairevenezuela.com/#dentist"},
+                "knowsLanguage":["fr","ar","en","es"]
+              },
+              {
+                "@type":"Dentist",
+                "@id":"https://centredentairevenezuela.com/#dentist",
+                "name":"Centre Dentaire Venezuela",
+                "url":"https://centredentairevenezuela.com/",
+                "telephone":"+212531112127",
+                "address":{
+                  "@type":"PostalAddress",
+                  "streetAddress":"4ème étage n°74, Immeuble Venezuela, 89 Rue Moussa Ben Noussair",
+                  "postalCode":"90000",
+                  "addressLocality":"Tanger",
+                  "addressCountry":"MA"
+                },
+                "geo":{"@type":"GeoCoordinates","latitude":35.7781833,"longitude":-5.8165155},
+                "hasMap":"https://maps.app.goo.gl/6SJrWgcmshbDhSLH7",
+                "employee":{"@id":"https://centredentairevenezuela.com/dr-majda-laasraoui-dentiste-tanger/#person"},
+                "sameAs":[
+                  "https://www.instagram.com/centre.dentaire.venezuela/",
+                  "https://www.tiktok.com/@centredentairevenezuela",
+                  "https://maps.app.goo.gl/6SJrWgcmshbDhSLH7"
+                ]
+              }
+            ]
+          }
+          block = '<script type="application/ld+json">' + json.dumps(graph, ensure_ascii=False, separators=(',',':')) + '</script>'
+          s = s[:m.start()] + block + s[m.end():]
+
+          # Hard checks for article template and SEO/GEO structure.
+          checks = {
+            'one h1': s.count('<h1>') == 1,
+            'canonical': 'rel="canonical" href="https://centredentairevenezuela.com/blog/implants-dentaires-2026-7-choses-a-savoir/"' in s,
+            'summary': s.count('class="blog-summary"') == 1,
+            'faq': s.count('class="site-faq"') == 1,
+            'medical validation': 'Validé médicalement par' in s,
+            'reviewedBy': 'reviewedBy' in s,
+            'implant internal link': '/implant-dentaire-tanger/' in s,
+            'periodontology internal link': '/parodontologie-tanger/' in s,
+            'surgery internal link': '/chirurgie-dentaire-tanger/' in s,
+            'pubmed only medical sources': all(host not in s for host in ['nih.gov/pmc','sciencedirect.com','iti.org']) and s.count('https://pubmed.ncbi.nlm.nih.gov/') >= 6,
+            'shared shell': '/assets/css/site-shell.css' in s and '/assets/js/site-shell.js' in s,
+          }
+          failed = [k for k,v in checks.items() if not v]
+          if failed:
+              raise RuntimeError('Checks failed: ' + ', '.join(failed))
+
+          p.write_text(s, encoding='utf-8')
+          print('Implant article refinement checks passed.')
+          PY
+      - name: Remove workflow and commit
+        run: |
+          git rm .github/workflows/refine-implant-blog-article.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add blog/implants-dentaires-2026-7-choses-a-savoir/index.html
+          git commit -m 'Refine implant blog SEO GEO and medical review metadata'
+          git push
