@@ -26,12 +26,12 @@ html = html.replace(
     'https://centredentairevenezuela.com/assets/images/blog/blanchiment-avant-mariage-apres-dr-majda.webp'
 )
 html = html.replace(
-    '.photo-card img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover}',
-    '.photo-card img{display:block;width:100%;height:auto;object-fit:contain;background:#f7faf9}'
+    'https://centredentairevenezuela.com/assets/images/avant-apres-03-blanchiment-avant.webp',
+    'https://centredentairevenezuela.com/assets/images/blog/blanchiment-avant-mariage-avant-dr-majda.webp'
 )
 html = html.replace(
-    '"image":["https://centredentairevenezuela.com/assets/images/avant-apres-03-blanchiment-avant.webp","https://centredentairevenezuela.com/assets/images/avant-apres-03-blanchiment-apres.webp"]',
-    '"image":["https://centredentairevenezuela.com/assets/images/blog/blanchiment-avant-mariage-avant-dr-majda.webp","https://centredentairevenezuela.com/assets/images/blog/blanchiment-avant-mariage-apres-dr-majda.webp"]'
+    '.photo-card img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover}',
+    '.photo-card img{display:block;width:100%;height:auto;object-fit:contain;background:#f7faf9}'
 )
 html = html.replace(
     'Les photos ci-dessous illustrent un cas de blanchiment réalisé au Centre Dentaire Venezuela.',
