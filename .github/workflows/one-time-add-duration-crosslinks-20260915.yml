@@ -39,13 +39,12 @@ jobs:
           compare = Path('blog/flash-opalescence-philips-zoom-blanchiment/index.html')
           s = compare.read_text(encoding='utf-8')
           assert duration_url not in s, 'Duration link already exists in comparison article'
-          marker = '<div class="cta-box">'
-          assert marker in s, 'Comparison CTA marker not found'
+          marker = '<div class="sources">'
+          assert marker in s, 'Comparison sources marker not found'
           crosslink = '<p>Au-delà du choix du système, la stabilité de la teinte varie avec le protocole et le patient. Pour les données de suivi à 1 an, 2 ans et au-delà, consultez notre guide sur <a href="/blog/combien-de-temps-dure-un-blanchiment-dentaire/"><strong>la durée d’un blanchiment dentaire</strong></a>.</p>'
           s = s.replace(marker, crosslink + marker, 1)
           compare.write_text(s, encoding='utf-8')
 
-          # Validation
           for p in (guide, compare):
               txt = p.read_text(encoding='utf-8')
               assert txt.count(duration_url) == 1, f'Expected exactly one duration link in {p}'
