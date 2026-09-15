@@ -1,0 +1,62 @@
+name: One-time add whitening duration crosslinks
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/one-time-add-duration-crosslinks-20260915.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  update-links:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Add contextual crosslinks
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          duration_url = '/blog/combien-de-temps-dure-un-blanchiment-dentaire/'
+
+          guide = Path('blog/blanchiment-dentaire-guide/index.html')
+          s = guide.read_text(encoding='utf-8')
+          assert duration_url not in s, 'Duration link already exists in guide'
+          old = '<div class="callout"><b>Questions pratiques souvent recherchées sur Google</b><p>Le prix d\'un blanchiment au Maroc, le coût des gouttières, les kits, la durée du résultat ou le terme « blanchiment flash » reviennent souvent dans les recherches. Ces questions sont utiles, mais elles mélangent des protocoles très différents. Notre page <a href="/blanchiment-dentaire-tanger/" style="text-decoration:underline">Blanchiment dentaire à Tanger</a> répond en détail aux questions de tarif, méthodes, gouttières, produits et devis sans présenter un prix générique comme s\'il s\'appliquait à tous les patients.</p></div>'
+          new = '<div class="callout"><b>Questions pratiques souvent recherchées sur Google</b><p>Le prix d\'un blanchiment au Maroc, le coût des gouttières, les kits, la durée du résultat ou le terme « blanchiment flash » reviennent souvent dans les recherches. Ces questions sont utiles, mais elles mélangent des protocoles très différents. Pour la tenue dans le temps, consultez notre guide <a href="/blog/combien-de-temps-dure-un-blanchiment-dentaire/"><strong>combien de temps dure un blanchiment dentaire</strong></a>. Notre page <a href="/blanchiment-dentaire-tanger/" style="text-decoration:underline">Blanchiment dentaire à Tanger</a> répond en détail aux questions de tarif, méthodes, gouttières, produits et devis sans présenter un prix générique comme s\'il s\'appliquait à tous les patients.</p></div>'
+          assert old in s, 'Guide target block not found'
+          s = s.replace(old, new, 1)
+          guide.write_text(s, encoding='utf-8')
+
+          compare = Path('blog/flash-opalescence-philips-zoom-blanchiment/index.html')
+          s = compare.read_text(encoding='utf-8')
+          assert duration_url not in s, 'Duration link already exists in comparison article'
+          marker = '<div class="cta-box">'
+          assert marker in s, 'Comparison CTA marker not found'
+          crosslink = '<p>Au-delà du choix du système, la stabilité de la teinte varie avec le protocole et le patient. Pour les données de suivi à 1 an, 2 ans et au-delà, consultez notre guide sur <a href="/blog/combien-de-temps-dure-un-blanchiment-dentaire/"><strong>la durée d’un blanchiment dentaire</strong></a>.</p>'
+          s = s.replace(marker, crosslink + marker, 1)
+          compare.write_text(s, encoding='utf-8')
+
+          # Validation
+          for p in (guide, compare):
+              txt = p.read_text(encoding='utf-8')
+              assert txt.count(duration_url) == 1, f'Expected exactly one duration link in {p}'
+          PY
+
+      - name: Commit and remove workflow
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add blog/blanchiment-dentaire-guide/index.html blog/flash-opalescence-philips-zoom-blanchiment/index.html
+          git rm .github/workflows/one-time-add-duration-crosslinks-20260915.yml
+          git commit -m "Add contextual links to whitening duration guide"
+          git push origin HEAD:main
