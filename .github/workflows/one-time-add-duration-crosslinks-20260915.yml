@@ -33,16 +33,16 @@ jobs:
           old = '<div class="callout"><b>Questions pratiques souvent recherchées sur Google</b><p>Le prix d\'un blanchiment au Maroc, le coût des gouttières, les kits, la durée du résultat ou le terme « blanchiment flash » reviennent souvent dans les recherches. Ces questions sont utiles, mais elles mélangent des protocoles très différents. Notre page <a href="/blanchiment-dentaire-tanger/" style="text-decoration:underline">Blanchiment dentaire à Tanger</a> répond en détail aux questions de tarif, méthodes, gouttières, produits et devis sans présenter un prix générique comme s\'il s\'appliquait à tous les patients.</p></div>'
           new = '<div class="callout"><b>Questions pratiques souvent recherchées sur Google</b><p>Le prix d\'un blanchiment au Maroc, le coût des gouttières, les kits, la durée du résultat ou le terme « blanchiment flash » reviennent souvent dans les recherches. Ces questions sont utiles, mais elles mélangent des protocoles très différents. Pour la tenue dans le temps, consultez notre guide <a href="/blog/combien-de-temps-dure-un-blanchiment-dentaire/"><strong>combien de temps dure un blanchiment dentaire</strong></a>. Notre page <a href="/blanchiment-dentaire-tanger/" style="text-decoration:underline">Blanchiment dentaire à Tanger</a> répond en détail aux questions de tarif, méthodes, gouttières, produits et devis sans présenter un prix générique comme s\'il s\'appliquait à tous les patients.</p></div>'
           assert old in s, 'Guide target block not found'
-          s = s.replace(old, new, 1)
-          guide.write_text(s, encoding='utf-8')
+          guide.write_text(s.replace(old, new, 1), encoding='utf-8')
 
           compare = Path('blog/flash-opalescence-philips-zoom-blanchiment/index.html')
           s = compare.read_text(encoding='utf-8')
           assert duration_url not in s, 'Duration link already exists in comparison article'
-          marker = '<div class="sources">'
-          assert marker in s, 'Comparison sources marker not found'
+          marker = '</article>'
+          pos = s.rfind(marker)
+          assert pos != -1, 'Comparison article closing tag not found'
           crosslink = '<p>Au-delà du choix du système, la stabilité de la teinte varie avec le protocole et le patient. Pour les données de suivi à 1 an, 2 ans et au-delà, consultez notre guide sur <a href="/blog/combien-de-temps-dure-un-blanchiment-dentaire/"><strong>la durée d’un blanchiment dentaire</strong></a>.</p>'
-          s = s.replace(marker, crosslink + marker, 1)
+          s = s[:pos] + crosslink + s[pos:]
           compare.write_text(s, encoding='utf-8')
 
           for p in (guide, compare):
